@@ -1,0 +1,14 @@
+.profile__nickname {
+  margin: 0;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 1.14;
+}
+
+@media screen and (max-width: 384px) {
+  .profile__nickname {
+    font-size: 27px;
+    line-height: 1.22;
+    padding: 0 0 0 28px;
+  }
+}

@@ -1,0 +1,6 @@
+.gallery__card-link {
+  flex-basis: 282px;
+  text-decoration: none;
+  background-color: #fff;
+  border-radius: 10px;
+}

@@ -1,0 +1,16 @@
+.profile__btn_edit {
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  margin: 6px 0 0 19px;
+  background: url(../../../../images/edit-btn.svg) no-repeat center;
+  border: 1px solid #fff;
+}
+
+@media screen and (max-width: 384px) {
+  .profile__btn_edit {
+    width: 18px;
+    height: 18px;
+    margin: 0 0 0 10px;
+  }
+}

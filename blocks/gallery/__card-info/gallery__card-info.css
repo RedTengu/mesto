@@ -1,0 +1,6 @@
+.gallery__card-info {
+  padding: 20px 15px 26px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

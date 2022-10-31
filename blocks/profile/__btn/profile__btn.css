@@ -1,0 +1,8 @@
+.profile__btn {
+  cursor: pointer;
+  background: transparent;
+}
+
+.profile__btn:active {
+  transform: scale(1.03);
+}
