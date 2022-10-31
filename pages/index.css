@@ -22,7 +22,7 @@
 @import url(../blocks/profile/__btn/_add/profile__btn_add.css);
 /* Gallery */
 @import url(../blocks/gallery/gallery.css);
-@import url(../blocks/gallery/__card-link/gallery__card-link.css);
+@import url(../blocks/gallery/__cards/gallery__cards.css);
 @import url(../blocks/gallery/__card/gallery__card.css);
 @import url(../blocks/gallery/__card-img/gallery__card-img.css);
 @import url(../blocks/gallery/__card-info/gallery__card-info.css);

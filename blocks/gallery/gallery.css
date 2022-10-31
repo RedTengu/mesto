@@ -1,10 +1,5 @@
 .gallery {
   padding: 46px 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  column-gap: 17px;
-  row-gap: 20px;
 }
 
 @media screen and (max-width: 384px) {

@@ -1,4 +1,4 @@
-# Проект: Путешествие по России
+# Проект: Mesto
 
 ## О проекте ##
 
@@ -13,4 +13,4 @@
 
 ## Ссылка на сайт ##
 
-* [https://redtengu.github.io/russian-travel/](https://redtengu.github.io/russian-travel/)
+* https://redtengu.github.io/mesto/

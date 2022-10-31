@@ -25,60 +25,62 @@
         <button class="profile__btn profile__btn_add hover-opacity"></button>
       </section>
       <section class="gallery">
-        <a class="gallery__card-link" href="#">
-          <figure class="gallery__card">
-            <img class="gallery__card-img" src="./images/Karachaevsk.jpg" alt="Фото галереи">
-            <figcaption class="gallery__card-info">
-              <h2 class="gallery__card-title">Карачаевск</h2>
-              <button class="gallery__like-btn gallery__like-btn_disabled gallery__like-btn_active"></button>
-            </figcaption>
-          </figure>
-        </a>
-        <a class="gallery__card-link" href="#">
-          <figure class="gallery__card">
-            <img class="gallery__card-img" src="./images/Mount-Elbrus.jpg" alt="Фото галереи">
-            <figcaption class="gallery__card-info">
-              <h2 class="gallery__card-title">Гора Эльбрус</h2>
-              <button class="gallery__like-btn gallery__like-btn_disabled gallery__like-btn_active"></button>
-            </figcaption>
-          </figure>
-        </a>
-        <a class="gallery__card-link" href="#">
-          <figure class="gallery__card">
-            <img class="gallery__card-img" src="./images/Dombai.jpg" alt="Фото галереи">
-            <figcaption class="gallery__card-info">
-              <h2 class="gallery__card-title">Домбай</h2>
-              <button class="gallery__like-btn gallery__like-btn_disabled gallery__like-btn_active"></button>
-            </figcaption>
-          </figure>
-        </a>
-        <a class="gallery__card-link" href="#">
-          <figure class="gallery__card">
-            <img class="gallery__card-img" src="./images/Mount-Elbrus.jpg" alt="Фото галереи">
-            <figcaption class="gallery__card-info">
-              <h2 class="gallery__card-title">Гора Эльбрус</h2>
-              <button class="gallery__like-btn gallery__like-btn_disabled gallery__like-btn_active"></button>
-            </figcaption>
-          </figure>
-        </a>
-        <a class="gallery__card-link" href="#">
-          <figure class="gallery__card">
-            <img class="gallery__card-img" src="./images/Dombai.jpg" alt="Фото галереи">
-            <figcaption class="gallery__card-info">
-              <h2 class="gallery__card-title">Домбай</h2>
-              <button class="gallery__like-btn gallery__like-btn_disabled gallery__like-btn_active"></button>
-            </figcaption>
-          </figure>
-        </a>
-        <a class="gallery__card-link" href="#">
-          <figure class="gallery__card">
-            <img class="gallery__card-img" src="./images/Karachaevsk.jpg" alt="Фото галереи">
-            <figcaption class="gallery__card-info">
-              <h2 class="gallery__card-title">Карачаево-Черкессия</h2>
-              <button class="gallery__like-btn gallery__like-btn_disabled gallery__like-btn_active"></button>
-            </figcaption>
-          </figure>
-        </a>
+        <ul class="gallery__cards">
+          <li>
+            <figure class="gallery__card">
+              <img class="gallery__card-img" src="./images/Karachaevsk.jpg" alt="Фото галереи">
+              <figcaption class="gallery__card-info">
+                <h2 class="gallery__card-title">Карачаевск</h2>
+                <button class="gallery__like-btn gallery__like-btn_disabled gallery__like-btn_active"></button>
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="gallery__card">
+              <img class="gallery__card-img" src="./images/Mount-Elbrus.jpg" alt="Фото галереи">
+              <figcaption class="gallery__card-info">
+                <h2 class="gallery__card-title">Гора Эльбрус</h2>
+                <button class="gallery__like-btn gallery__like-btn_disabled gallery__like-btn_active"></button>
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="gallery__card">
+              <img class="gallery__card-img" src="./images/Dombai.jpg" alt="Фото галереи">
+              <figcaption class="gallery__card-info">
+                <h2 class="gallery__card-title">Домбай</h2>
+                <button class="gallery__like-btn gallery__like-btn_disabled gallery__like-btn_active"></button>
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="gallery__card">
+              <img class="gallery__card-img" src="./images/Mount-Elbrus.jpg" alt="Фото галереи">
+              <figcaption class="gallery__card-info">
+                <h2 class="gallery__card-title">Гора Эльбрус</h2>
+                <button class="gallery__like-btn gallery__like-btn_disabled gallery__like-btn_active"></button>
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="gallery__card">
+              <img class="gallery__card-img" src="./images/Dombai.jpg" alt="Фото галереи">
+              <figcaption class="gallery__card-info">
+                <h2 class="gallery__card-title">Домбай</h2>
+                <button class="gallery__like-btn gallery__like-btn_disabled gallery__like-btn_active"></button>
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+              <figure class="gallery__card">
+                <img class="gallery__card-img" src="./images/Karachaevsk.jpg" alt="Фото галереи">
+                <figcaption class="gallery__card-info">
+                  <h2 class="gallery__card-title">Карачаево-Черкессия</h2>
+                  <button class="gallery__like-btn gallery__like-btn_disabled gallery__like-btn_active"></button>
+                </figcaption>
+              </figure>
+          </li>
+        </ul>
       </section>
     </main>
     <footer class="footer">
@@ -88,7 +90,7 @@
   <div class="popup">
     <div class="popup__body">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form" action="">
+      <form class="popup__form" action="POST">
         <div class="popup__inputs">
           <input class="popup__name-input popup__text-input" type="text" value="">
           <input class="popup__job-input popup__text-input" type="text" value="">
