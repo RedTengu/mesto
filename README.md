@@ -13,4 +13,4 @@
 
 ## Ссылка на сайт ##
 
-* [https://redtengu.github.io/russian-travel/](https://redtengu.github.io/russian-travel/)
+* https://redtengu.github.io/mesto/
