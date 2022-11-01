@@ -1,10 +1,17 @@
 // Открытие и закрытие popup
-const openPopupBtn = document.querySelector('.profile__btn_edit');
+const openPopupBtn = document.querySelector('.profile__edit-btn');
 const popupElem = document.querySelector('.popup');
 const closePopupBtn = popupElem.querySelector('.popup__btn-close');
+const formElement = popupElem.querySelector('.popup__form');
+const nameInput = formElement.querySelector('.popup__text-input_profile_name');
+const jobInput = formElement.querySelector('.popup__text-input_profile_job');
+const nameProfile = document.querySelector('.profile__nickname');
+const jobProfile = document.querySelector('.profile__bio');
 
 const onOpen = (popup) => {
   popup.classList.add('popup_opened');
+  nameInput.value = nameProfile.textContent;
+  jobInput.value = jobProfile.textContent;
 };
 
 const onClose = (popup) => {
@@ -18,18 +25,6 @@ openPopupBtn.addEventListener('click', () => {
 closePopupBtn.addEventListener('click', () => {
   onClose(popupElem);
 });
-
-// Форма профиля и редактирование
-const formElement = popupElem.querySelector('.popup__form');
-
-const nameInput = formElement.querySelector('.popup__name-input');
-const jobInput = formElement.querySelector('.popup__job-input');
-
-const nameProfile = document.querySelector('.profile__nickname');
-const jobProfile = document.querySelector('.profile__bio');
-
-nameInput.value = nameProfile.textContent;
-jobInput.value = jobProfile.textContent;
 
 function formSubmitHandler (evt) {
     evt.preventDefault();

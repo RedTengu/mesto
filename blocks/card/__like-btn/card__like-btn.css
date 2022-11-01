@@ -1,14 +1,13 @@
-.gallery__like-btn {
+.card__like-btn {
   margin: 3px 5px 0 0;
   padding: 0;
   width: 22px;
   height: 19px;
   background: url(../../../images/like-btn.svg) no-repeat center;
-  cursor: pointer;
   border: none;
   transition: opacity .2s ease-in-out;
 }
 
-.gallery__like-btn:hover {
+.card__like-btn:hover {
   opacity: .5;
 }

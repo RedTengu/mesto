@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
-  <title>Mesto</title>
+  <title>Место</title>
 </head>
 <body class="page">
   <div class="container">
@@ -18,67 +18,67 @@
         <div class="profile__info">
           <div class="profile__nickname-wrapper">
             <h1 class="profile__nickname">Жак-Ив Кусто</h1>
-            <button class="profile__btn profile__btn_edit hover-opacity"></button>
+            <button class="profile__edit-btn btn hover-opacity" type="button" aria-label="Редактировать профиль"></button>
           </div>
           <p class="profile__bio">Исследователь океана</p>
         </div>
-        <button class="profile__btn profile__btn_add hover-opacity"></button>
+        <button class="profile__add-btn btn hover-opacity" type="button" aria-label="Добавить карточку"></button>
       </section>
       <section class="gallery">
         <ul class="gallery__cards">
           <li>
-            <figure class="gallery__card">
-              <img class="gallery__card-img" src="./images/Karachaevsk.jpg" alt="Фото галереи">
-              <figcaption class="gallery__card-info">
-                <h2 class="gallery__card-title">Карачаевск</h2>
-                <button class="gallery__like-btn gallery__like-btn_disabled gallery__like-btn_active"></button>
-              </figcaption>
-            </figure>
+            <article class="card">
+              <img class="card__img" src="./images/Karachaevsk.jpg" alt="Карачаевск">
+              <div class="card__info">
+                <h2 class="card__title">Карачаевск</h2>
+                <button class="card__like-btn card__like-btn_active btn" type="button" aria-label="Поставить лайк"></button>
+              </div>
+            </article>
           </li>
           <li>
-            <figure class="gallery__card">
-              <img class="gallery__card-img" src="./images/Mount-Elbrus.jpg" alt="Фото галереи">
-              <figcaption class="gallery__card-info">
-                <h2 class="gallery__card-title">Гора Эльбрус</h2>
-                <button class="gallery__like-btn gallery__like-btn_disabled gallery__like-btn_active"></button>
-              </figcaption>
-            </figure>
+            <article class="card">
+              <img class="card__img" src="./images/Mount-Elbrus.jpg" alt="Гора Эльбрус">
+              <div class="card__info">
+                <h2 class="card__title">Гора Эльбрус</h2>
+                <button class="card__like-btn card__like-btn_active btn" type="button" aria-label="Поставить лайк"></button>
+              </div>
+            </article>
           </li>
           <li>
-            <figure class="gallery__card">
-              <img class="gallery__card-img" src="./images/Dombai.jpg" alt="Фото галереи">
-              <figcaption class="gallery__card-info">
-                <h2 class="gallery__card-title">Домбай</h2>
-                <button class="gallery__like-btn gallery__like-btn_disabled gallery__like-btn_active"></button>
-              </figcaption>
-            </figure>
+            <article class="card">
+              <img class="card__img" src="./images/Dombai.jpg" alt="Домбай">
+              <div class="card__info">
+                <h2 class="card__title">Домбай</h2>
+                <button class="card__like-btn card__like-btn_active btn" type="button" aria-label="Поставить лайк"></button>
+              </div>
+            </article>
           </li>
           <li>
-            <figure class="gallery__card">
-              <img class="gallery__card-img" src="./images/Mount-Elbrus.jpg" alt="Фото галереи">
-              <figcaption class="gallery__card-info">
-                <h2 class="gallery__card-title">Гора Эльбрус</h2>
-                <button class="gallery__like-btn gallery__like-btn_disabled gallery__like-btn_active"></button>
-              </figcaption>
-            </figure>
+            <article class="card">
+              <img class="card__img" src="./images/Mount-Elbrus.jpg" alt="Гора Эльбрус">
+              <div class="card__info">
+                <h2 class="card__title">Гора Эльбрус</h2>
+                <button class="card__like-btn card__like-btn_active btn" type="button" aria-label="Поставить лайк"></button>
+              </div>
+            </article>
           </li>
           <li>
-            <figure class="gallery__card">
-              <img class="gallery__card-img" src="./images/Dombai.jpg" alt="Фото галереи">
-              <figcaption class="gallery__card-info">
-                <h2 class="gallery__card-title">Домбай</h2>
-                <button class="gallery__like-btn gallery__like-btn_disabled gallery__like-btn_active"></button>
-              </figcaption>
-            </figure>
+            <article class="card">
+              <img class="card__img" src="./images/Dombai.jpg" alt="Домбай">
+              <div class="card__info">
+                <h2 class="card__title">Домбай</h2>
+                <button class="card__like-btn card__like-btn_active btn" type="button" aria-label="Поставить лайк"></button>
+              </div>
+            </article>
           </li>
           <li>
-              <figure class="gallery__card">
-                <img class="gallery__card-img" src="./images/Karachaevsk.jpg" alt="Фото галереи">
-                <figcaption class="gallery__card-info">
-                  <h2 class="gallery__card-title">Карачаево-Черкессия</h2>
-                  <button class="gallery__like-btn gallery__like-btn_disabled gallery__like-btn_active"></button>
-                </figcaption>
-              </figure>
+            <article class="card">
+              <img class="card__img" src="./images/Karachaevsk.jpg" alt="Карачаево-Черкессия">
+              <div class="card__info">
+                <h2 class="card__title">Карачаево-Черкессия</h2>
+                <button class="card__like-btn card__like-btn_active btn" type="button" aria-label="Поставить лайк"></button>
+              </div>
+            </article>
           </li>
         </ul>
       </section>
@@ -90,14 +90,12 @@
   <div class="popup">
     <div class="popup__body">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form" action="POST">
-        <div class="popup__inputs">
-          <input class="popup__name-input popup__text-input" type="text" value="">
-          <input class="popup__job-input popup__text-input" type="text" value="">
-        </div>
+      <form class="popup__form" action="POST" name="profile-data">
+        <input class="popup__text-input popup__text-input_profile_name" type="text" name="profile-name" maxlength="12" value="">
+        <input class="popup__text-input popup__text-input_profile_job" type="text" name="profile-job" maxlength="20" value="">
         <input class="popup__submit-input" type="submit" value="Сохранить">
       </form>
-      <button class="popup__btn-close"></button>
+      <button class="popup__btn-close btn hover-opacity" type="button" aria-label="Закрыть окно редактирования"></button>
     </div>
   </div>
   <script src="./scripts/index.js" defer></script>
