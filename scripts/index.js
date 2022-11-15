@@ -1,5 +1,6 @@
 // Проверить точки с запятыми.
 // Перенести все переменные.
+// Чекнуть альты
 
 // Начальные карточки
 const initialCards = [
@@ -33,6 +34,7 @@ const initialCards = [
 const popupElem = document.querySelector('.popup');
 const popupProfile = document.querySelector('.popup_profile')
 const popupAddCard = document.querySelector('.popup_card-add')
+const popupGallery = document.querySelector('.popup_gallery')
 const openEditBtn = document.querySelector('.profile__edit-btn');
 const openAddBtn = document.querySelector('.profile__add-btn')
 const closePopupBtn = document.querySelectorAll('.popup__btn-close');
@@ -143,14 +145,3 @@ function addFormSubmitHandler (evt) {
 }
 
 addFormElement.addEventListener('submit', addFormSubmitHandler);
-
-// Удаление карточки
-
-const deleteCardBtn = document.querySelectorAll('.card__delete-btn')
-
-// deleteCardBtn.forEach((btn) => {
-//   btn.closest('.card')
-//   btn.addEventListener('click', (evt) => {
-//     evt.target.closest('.gallery__card-item').remove()
-//   })
-// });
