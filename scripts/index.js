@@ -87,6 +87,7 @@ function editFormSubmitHandler (evt) {
 editFormElement.addEventListener('submit', editFormSubmitHandler);
 
 // Добавление карточек
+
 const cardNameInput = document.querySelector('.popup__text-input_card_name')
 const cardSrcInput = document.querySelector('.popup__text-input_card_src')
 
@@ -114,6 +115,8 @@ initialCards.forEach((card) => {
   renderCard(card)
 })
 
+// Сохранить данные карточки
+
 function addFormSubmitHandler (evt) {
   evt.preventDefault();
   renderCard({name: cardNameInput.value, link: cardSrcInput.value})
@@ -123,22 +126,6 @@ function addFormSubmitHandler (evt) {
 
 addFormElement.addEventListener('submit', addFormSubmitHandler);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Сохранить данные карточки
-
 // Функция лайка
 
 const likeBtn = document.querySelectorAll('.card__like-btn')
@@ -147,5 +134,16 @@ likeBtn.forEach((btn) => {
   btn.closest('.card')
   btn.addEventListener('click', () => {
     btn.classList.toggle('card__like-btn_active')
+  })
+});
+
+// Удаление карточки
+
+const deleteCardBtn = document.querySelectorAll('.card__delete-btn')
+
+deleteCardBtn.forEach((btn) => {
+  btn.closest('.card')
+  btn.addEventListener('click', (evt) => {
+    evt.target.closest('.gallery__card-item').remove()
   })
 });
