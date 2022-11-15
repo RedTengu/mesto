@@ -87,13 +87,25 @@ function editFormSubmitHandler (evt) {
 editFormElement.addEventListener('submit', editFormSubmitHandler);
 
 // Добавление карточек
-
 const cardNameInput = document.querySelector('.popup__text-input_card_name')
 const cardSrcInput = document.querySelector('.popup__text-input_card_src')
 
 const galleryCards = document.querySelector('.gallery__cards')
 
 const cardTemplate = document.querySelector('.card-template').content
+
+// Функция лайка
+
+const likeHandler = (evt) => {
+  evt.target.classList.toggle('card__like-btn_active')
+}
+
+// Функция удаления
+
+const deleteHandler = (evt) => {
+  evt.target.closest('.gallery__card-item').remove()
+
+}
 
 const generateCard = (card) => {
   const cardElem = cardTemplate.cloneNode(true)
@@ -103,6 +115,12 @@ const generateCard = (card) => {
 
   cardTitle.textContent = card.name
   cardImg.src = card.link
+
+  const likeBtn = cardElem.querySelector('.card__like-btn')
+  likeBtn.addEventListener('click', likeHandler)
+
+  const deleteBtn = cardElem.querySelector('.card__delete-btn')
+  deleteBtn.addEventListener('click', deleteHandler)
 
   return cardElem;
 }
@@ -126,24 +144,13 @@ function addFormSubmitHandler (evt) {
 
 addFormElement.addEventListener('submit', addFormSubmitHandler);
 
-// Функция лайка
-
-const likeBtn = document.querySelectorAll('.card__like-btn')
-
-likeBtn.forEach((btn) => {
-  btn.closest('.card')
-  btn.addEventListener('click', () => {
-    btn.classList.toggle('card__like-btn_active')
-  })
-});
-
 // Удаление карточки
 
 const deleteCardBtn = document.querySelectorAll('.card__delete-btn')
 
-deleteCardBtn.forEach((btn) => {
-  btn.closest('.card')
-  btn.addEventListener('click', (evt) => {
-    evt.target.closest('.gallery__card-item').remove()
-  })
-});
+// deleteCardBtn.forEach((btn) => {
+//   btn.closest('.card')
+//   btn.addEventListener('click', (evt) => {
+//     evt.target.closest('.gallery__card-item').remove()
+//   })
+// });
