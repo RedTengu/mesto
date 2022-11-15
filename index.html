@@ -26,60 +26,6 @@
       </section>
       <section class="gallery">
         <ul class="gallery__cards">
-          <li>
-            <article class="card">
-              <img class="card__img" src="./images/Karachaevsk.jpg" alt="Карачаевск">
-              <div class="card__info">
-                <h2 class="card__title">Карачаевск</h2>
-                <button class="card__like-btn btn" type="button" aria-label="Поставить лайк"></button>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="card">
-              <img class="card__img" src="./images/Mount-Elbrus.jpg" alt="Гора Эльбрус">
-              <div class="card__info">
-                <h2 class="card__title">Гора Эльбрус</h2>
-                <button class="card__like-btn btn" type="button" aria-label="Поставить лайк"></button>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="card">
-              <img class="card__img" src="./images/Dombai.jpg" alt="Домбай">
-              <div class="card__info">
-                <h2 class="card__title">Домбай</h2>
-                <button class="card__like-btn btn" type="button" aria-label="Поставить лайк"></button>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="card">
-              <img class="card__img" src="./images/Mount-Elbrus.jpg" alt="Гора Эльбрус">
-              <div class="card__info">
-                <h2 class="card__title">Гора Эльбрус</h2>
-                <button class="card__like-btn btn" type="button" aria-label="Поставить лайк"></button>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="card">
-              <img class="card__img" src="./images/Dombai.jpg" alt="Домбай">
-              <div class="card__info">
-                <h2 class="card__title">Домбай</h2>
-                <button class="card__like-btn btn" type="button" aria-label="Поставить лайк"></button>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="card">
-              <img class="card__img" src="./images/Karachaevsk.jpg" alt="Карачаево-Черкессия">
-              <div class="card__info">
-                <h2 class="card__title">Карачаево-Черкессия</h2>
-                <button class="card__like-btn btn" type="button" aria-label="Поставить лайк"></button>
-              </div>
-            </article>
-          </li>
         </ul>
       </section>
     </main>
@@ -87,7 +33,7 @@
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
   </div>
-  <div class="popup">
+  <div class="popup popup_profile">
     <div class="popup__body">
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form" action="POST" name="profile-data">
@@ -98,6 +44,29 @@
       <button class="popup__btn-close btn hover-opacity" type="button" aria-label="Закрыть окно редактирования"></button>
     </div>
   </div>
+  <div class="popup popup_card-add">
+    <div class="popup__body">
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form" action="POST" name="card-add">
+        <input class="popup__text-input popup__text-input_card_name" type="text" name="card-name" placeholder="Название" value="">
+        <input class="popup__text-input popup__text-input_card_src" type="text" name="card-src" placeholder="Ссылка на картинку" value="">
+        <input class="popup__submit-input" type="submit" value="Создать">
+      </form>
+      <button class="popup__btn-close btn hover-opacity" type="button" aria-label="Закрыть окно добавления"></button>
+    </div>
+  </div>
   <script src="./scripts/index.js" defer></script>
+  <template class="card-template">
+    <li>
+      <article class="card">
+        <img class="card__img" src="" alt="">
+        <div class="card__info">
+          <h2 class="card__title"></h2>
+          <button class="card__like-btn btn" type="button" aria-label="Поставить лайк"></button>
+        </div>
+        <button class="card__delete-btn btn hover-opacity" type="button" aria-label="Удалить карточку"></button>
+      </article>
+    </li>
+  </template>
 </body>
 </html>
