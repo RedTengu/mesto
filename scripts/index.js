@@ -37,9 +37,10 @@ const openEditBtn = document.querySelector('.profile__edit-btn');
 const openAddBtn = document.querySelector('.profile__add-btn')
 const closePopupBtn = document.querySelectorAll('.popup__btn-close');
 
-const formElement = popupElem.querySelector('.popup__form');
-const nameInput = formElement.querySelector('.popup__text-input_profile_name');
-const jobInput = formElement.querySelector('.popup__text-input_profile_job');
+const editFormElement = popupProfile.querySelector('.popup__edit-form');
+const addFormElement = popupAddCard.querySelector('.popup__add-form')
+const nameInput = editFormElement.querySelector('.popup__text-input_profile_name');
+const jobInput = editFormElement.querySelector('.popup__text-input_profile_job');
 
 const nameProfile = document.querySelector('.profile__nickname');
 const jobProfile = document.querySelector('.profile__bio');
@@ -75,29 +76,52 @@ closePopupBtn.forEach((btn) => {
 });
 
 // Сохранить данные профиля
-function formSubmitHandler (evt) {
-    evt.preventDefault();
+function editFormSubmitHandler (evt) {
+  evt.preventDefault();
 
-    nameProfile.textContent = nameInput.value;
-    jobProfile.textContent = jobInput.value;
-    onClose(popupElem)
+  nameProfile.textContent = nameInput.value;
+  jobProfile.textContent = jobInput.value;
+  onClose(popupElem)
 }
 
-formElement.addEventListener('submit', formSubmitHandler);
+editFormElement.addEventListener('submit', editFormSubmitHandler);
 
 // Добавление карточек
 const cardNameInput = document.querySelector('.popup__text-input_card_name')
 const cardSrcInput = document.querySelector('.popup__text-input_card_src')
 
-const cardTemplate = document.querySelector('.card-template')
+const galleryCards = document.querySelector('.gallery__cards')
 
-const cardTitle = cardTemplate.querySelector('.card__title')
-const cardImg = cardTemplate.querySelector('.card__img')
+const cardTemplate = document.querySelector('.card-template').content
 
+const generateCard = (card) => {
+  const cardElem = cardTemplate.cloneNode(true)
 
+  const cardTitle = cardElem.querySelector('.card__title')
+  const cardImg = cardElem.querySelector('.card__img')
 
+  cardTitle.textContent = card.name
+  cardImg.src = card.link
 
+  return cardElem;
+}
 
+const renderCard = (card) => {
+  galleryCards.prepend(generateCard(card))
+}
+
+initialCards.forEach((card) => {
+  renderCard(card)
+})
+
+function addFormSubmitHandler (evt) {
+  evt.preventDefault();
+  renderCard({name: cardNameInput.value, link: cardSrcInput.value})
+  onClose(popupAddCard)
+  addFormElement.reset()
+}
+
+addFormElement.addEventListener('submit', addFormSubmitHandler);
 
 
 
