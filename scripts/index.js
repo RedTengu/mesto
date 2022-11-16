@@ -1,5 +1,3 @@
-// Чекнуть альты
-
 // Начальные карточки
 const initialCards = [
   {
@@ -33,6 +31,8 @@ const popupElem = document.querySelector('.popup');
 const popupProfile = document.querySelector('.popup_profile');
 const popupAddCard = document.querySelector('.popup_card-add');
 const popupGallery = document.querySelector('.popup_gallery');
+const popupImg = popupGallery.querySelector('.popup__img');
+const popupCaption = popupGallery.querySelector('.popup__caption');
 const openEditBtn = document.querySelector('.profile__edit-btn');
 const openAddBtn = document.querySelector('.profile__add-btn');
 const closePopupBtn = document.querySelectorAll('.popup__btn-close');
@@ -46,7 +46,7 @@ const cardSrcInput = document.querySelector('.popup__text-input_card_src');
 // Переменные данных профиля
 const nameProfile = document.querySelector('.profile__nickname');
 const jobProfile = document.querySelector('.profile__bio');
-// Переменные контейнера карточек и шаблона карточки
+// Переменные карточек и шаблона
 const galleryCards = document.querySelector('.gallery__cards');
 const cardTemplate = document.querySelector('.card-template').content;
 
@@ -58,7 +58,7 @@ const addValueProfile = () => {
 
 addValueProfile();
 
-// Открытие и закрытие
+// Открытие и закрытие popup
 const onOpen = (popup) => {
   popup.classList.add('popup_opened');
 };
@@ -109,6 +109,7 @@ const generateCard = (card) => {
   const cardImg = cardElem.querySelector('.card__img');
 
   cardTitle.textContent = card.name;
+  cardImg.alt = cardTitle.textContent;
   cardImg.src = card.link;
 
   const likeBtn = cardElem.querySelector('.card__like-btn');
@@ -116,6 +117,15 @@ const generateCard = (card) => {
 
   const deleteBtn = cardElem.querySelector('.card__delete-btn');
   deleteBtn.addEventListener('click', deleteHandler);
+
+  // Открытие картинки карточки
+  const openImgCardHandler = () => {
+    popupImg.src = cardImg.src;
+    popupImg.alt = cardTitle.textContent;
+    popupCaption.textContent = cardTitle.textContent;
+    onOpen(popupGallery);
+  }
+  cardImg.addEventListener('click', openImgCardHandler);
 
   return cardElem;
 };
