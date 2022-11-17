@@ -8,7 +8,7 @@ const popupImg = popupGallery.querySelector('.popup__img');
 const popupCaption = popupGallery.querySelector('.popup__caption');
 const btnEdit = document.querySelector('.profile__edit-btn');
 const btnAdd = document.querySelector('.profile__add-btn');
-const btnClose = document.querySelectorAll('.popup__btn-close');
+const btnsClose = document.querySelectorAll('.popup__btn-close');
 // Form и input
 const formEdit = popupProfile.querySelector('.popup__edit-form');
 const formAdd = popupAddCard.querySelector('.popup__add-form');
@@ -130,7 +130,7 @@ btnAdd.addEventListener('click', () => {
 });
 
 // Закрыть любой popup
-btnClose.forEach((btn) => {
+btnsClose.forEach((btn) => {
   const popup = btn.closest('.popup');
   btn.addEventListener('click', () => closePopup(popup));
 });
