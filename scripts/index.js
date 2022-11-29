@@ -51,6 +51,14 @@ function handleEditFormSubmit (evt) {
   closePopup(popupProfile);
 };
 
+// Валидация
+
+
+
+
+
+
+
 // Добавление карточки
 function handleAddFormSubmit (evt) {
   evt.preventDefault();

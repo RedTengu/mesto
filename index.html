@@ -37,9 +37,31 @@
     <div class="popup__body">
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form popup__edit-form" action="POST" name="profile-data">
-        <input class="popup__text-input popup__text-input_profile_name" type="text" name="profile-name" maxlength="12" placeholder="Никнейм" value="">
-        <input class="popup__text-input popup__text-input_profile_job" type="text" name="profile-job" maxlength="20" placeholder="Деятельность" value="">
-        <input class="popup__submit-input" type="submit" value="Сохранить">
+        <div class="popup__input-block">
+          <input
+            class="popup__text-input popup__text-input_profile_name"
+            type="text"
+            name="profile-name"
+            minlength="2"
+            maxlength="40"
+            placeholder="Никнейм"
+            value=""
+            required>
+          <span class="input-error"></span>
+        </div>
+        <div class="popup__input-block">
+          <input
+            class="popup__text-input popup__text-input_profile_job"
+            type="text"
+            name="profile-job"
+            minlength="2"
+            maxlength="200"
+            placeholder="Деятельность"
+            value=""
+            required>
+          <span class="input-error"></span>
+        </div>
+        <input class="popup__submit-input" type="submit" value="Сохранить" disabled>
       </form>
       <button class="popup__btn-close btn hover-opacity" type="button" aria-label="Закрыть окно редактирования"></button>
     </div>
@@ -48,9 +70,27 @@
     <div class="popup__body">
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form popup__add-form" action="POST" name="card-add">
-        <input class="popup__text-input popup__text-input_card_name" type="text" name="card-name" placeholder="Название" value="">
-        <input class="popup__text-input popup__text-input_card_src" type="text" name="card-src" placeholder="Ссылка на картинку" value="">
-        <input class="popup__submit-input" type="submit" value="Создать">
+        <div class="popup__input-block">
+          <input
+            class="popup__text-input popup__text-input_card_name"
+            type="text"
+            name="card-name"
+            placeholder="Название"
+            value=""
+            required>
+          <span class="input-error"></span>
+        </div>
+        <div class="popup__input-block">
+          <input
+            class="popup__text-input popup__text-input_card_src"
+            type="text"
+            name="card-src"
+            placeholder="Ссылка на картинку"
+            value=""
+            required>
+          <span class="input-error"></span>
+        </div>
+        <input class="popup__submit-input" type="submit" value="Создать" disabled>
       </form>
       <button class="popup__btn-close btn hover-opacity" type="button" aria-label="Закрыть окно добавления"></button>
     </div>
