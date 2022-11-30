@@ -1,3 +1,5 @@
+// Закрытие по клику вне окна
+// Закрытие по клавише esc
 // Переменные
 
 // Popup
@@ -51,13 +53,7 @@ function handleEditFormSubmit (evt) {
   closePopup(popupProfile);
 };
 
-// Валидация
-
-
-
-
-
-
+// Карточки
 
 // Добавление карточки
 function handleAddFormSubmit (evt) {
@@ -140,6 +136,18 @@ btnAdd.addEventListener('click', () => {
 // Закрыть любой popup
 btnsClose.forEach((btn) => {
   const popup = btn.closest('.popup');
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      closePopup(popup);
+    };
+  });
+
+  popup.addEventListener('click', (evt) => {
+    if (evt.target === evt.currentTarget) {
+      closePopup(popup);
+    };
+  });
+
   btn.addEventListener('click', () => closePopup(popup));
 });
 
@@ -148,3 +156,4 @@ formEdit.addEventListener('submit', handleEditFormSubmit);
 
 // Сохранить добавляемую карточку
 formAdd.addEventListener('submit', handleAddFormSubmit);
+
