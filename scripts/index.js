@@ -1,5 +1,5 @@
-// Закрытие по клику вне окна
-// Закрытие по клавише esc
+// "Можно лучше" поправлю позже, обещаю :)
+
 // Переменные
 
 // Popup
@@ -33,15 +33,39 @@ const addValueProfile = () => {
   jobInput.value = jobProfile.textContent;
 };
 
-addValueProfile();
-
 // Открытие и закрытие popup
 const openPopup = (popup) => {
+  addValueProfile();
+
   popup.classList.add('popup_opened');
+
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      closePopup(popup);
+    };
+  });
+
+  popup.addEventListener('click', (evt) => {
+    if (evt.target === evt.currentTarget) {
+      closePopup(popup);
+    };
+  });
 };
 
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
+
+  document.removeEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      closePopup(popup);
+    };
+  });
+
+  popup.removeEventListener('click', (evt) => {
+    if (evt.target === evt.currentTarget) {
+      closePopup(popup);
+    };
+  });
 };
 
 // Редактирование профиля
@@ -130,24 +154,19 @@ btnEdit.addEventListener('click', () => {
 
 // Открыть popup добавления карточки
 btnAdd.addEventListener('click', () => {
+  const submitBtn = document.querySelectorAll('.popup__submit-input');
+
+  submitBtn.forEach((btn) => {
+    btn.setAttribute('disabled', true)
+    btn.classList.remove('popup__submit-input_active');
+  });
+
   openPopup(popupAddCard);
 });
 
-// Закрыть любой popup
+// Закрыть любой popup кнопкой
 btnsClose.forEach((btn) => {
   const popup = btn.closest('.popup');
-  document.addEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape') {
-      closePopup(popup);
-    };
-  });
-
-  popup.addEventListener('click', (evt) => {
-    if (evt.target === evt.currentTarget) {
-      closePopup(popup);
-    };
-  });
-
   btn.addEventListener('click', () => closePopup(popup));
 });
 

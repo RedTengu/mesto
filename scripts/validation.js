@@ -16,8 +16,12 @@ const hideError = (form, input) => {
 // Проверка валидности поля
 const validationForms = (form, input) => {
   if (!input.validity.valid) {
+    input.style.borderBottom = "1px solid #ff0000";
+
     showError(form, input, input.validationMessage);
   } else {
+    input.style.borderBottom = "1px solid rgba(0, 0, 0, .2)";
+
     hideError(form, input);
   };
 };
@@ -63,4 +67,11 @@ const enableValidation = () => {
   });
 };
 
-enableValidation();
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+});
