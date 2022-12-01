@@ -1,15 +1,24 @@
 // Валидация
+const validationObject = {
+  formSelector: 'popup__form',
+  inputSelector: 'popup__text-input',
+  submitButtonSelector: 'popup__submit-input_active',
+  inactiveButtonClass: 'popup__submit-input',
+  inputErrorClass: 'input-error',
+  errorClass: '.input-error_active'
+};
 
 // Показ ошибки
 const showError = (form, input, errorMessage) => {
   const error = form.querySelector(`.input-error-${input.id}`);
+  error.classList.add('input-error_active');
   error.textContent = errorMessage;
 };
 
 // Скрытие ошибки
 const hideError = (form, input) => {
   const error = form.querySelector(`.input-error-${input.id}`);
-
+  error.classList.remove('input-error_active');
   error.textContent = '';
 };
 
@@ -67,11 +76,4 @@ const enableValidation = () => {
   });
 };
 
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-});
+enableValidation(validationObject);
