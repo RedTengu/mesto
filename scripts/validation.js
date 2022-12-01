@@ -5,20 +5,20 @@ const validationObject = {
   submitButtonSelector: 'popup__submit-input_active',
   inactiveButtonClass: 'popup__submit-input',
   inputErrorClass: 'input-error',
-  errorClass: '.input-error_active'
+  errorClass: 'input-error_active'
 };
 
 // Показ ошибки
 const showError = (form, input, errorMessage) => {
-  const error = form.querySelector(`.input-error-${input.id}`);
-  error.classList.add('input-error_active');
+  const error = form.querySelector(`.${validationObject.inputErrorClass}-${input.id}`);
+  error.classList.add(validationObject.errorClass);
   error.textContent = errorMessage;
 };
 
 // Скрытие ошибки
 const hideError = (form, input) => {
-  const error = form.querySelector(`.input-error-${input.id}`);
-  error.classList.remove('input-error_active');
+  const error = form.querySelector(`.${validationObject.inputErrorClass}-${input.id}`);
+  error.classList.remove(validationObject.errorClass);
   error.textContent = '';
 };
 
@@ -45,17 +45,17 @@ const hasInvalidInput = (inputs) => {
 const toggleButtonState = (inputs, submitBtn) => {
   if (!hasInvalidInput(inputs)) {
     submitBtn.removeAttribute('disabled')
-    submitBtn.classList.add('popup__submit-input_active');
+    submitBtn.classList.add(validationObject.submitButtonSelector);
   } else {
     submitBtn.setAttribute('disabled', true)
-    submitBtn.classList.remove('popup__submit-input_active');
+    submitBtn.classList.remove(validationObject.submitButtonSelector);
   }
 };
 
 // Добавляем слушатель всем полям
 const setEventListeners = (form) => {
-  const inputs = Array.from(form.querySelectorAll('.popup__text-input'));
-  const submitBtn = form.querySelector('.popup__submit-input')
+  const inputs = Array.from(form.querySelectorAll(`.${validationObject.inputSelector}`));
+  const submitBtn = form.querySelector(`.${validationObject.inactiveButtonClass}`);
 
   toggleButtonState(inputs, submitBtn);
 
@@ -69,7 +69,7 @@ const setEventListeners = (form) => {
 
 // Добавляем ф-цию валидации всем формам
 const enableValidation = () => {
-  const forms = Array.from(document.querySelectorAll('.popup__form'));
+  const forms = Array.from(document.querySelectorAll(`.${validationObject.formSelector}`));
 
   forms.forEach((form) => {
     setEventListeners(form);
