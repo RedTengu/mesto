@@ -37,18 +37,14 @@ const addValueProfile = () => {
 // Закрытие popup по клавише
 const handleEscClose = (evt) => {
   if (evt.key === 'Escape') {
-    popups.forEach((popup) => {
-      closePopup(popup);
-    });
+    closePopup(document.querySelector('.popup_opened'));
   };
 };
 
 // Закрытие popup по оверлею
 const handleOverlayClose = (evt) => {
   if (evt.target === evt.currentTarget) {
-    popups.forEach((popup) => {
-      closePopup(popup);
-    });
+    closePopup(document.querySelector('.popup_opened'));
   };
 };
 
