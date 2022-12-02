@@ -41,14 +41,24 @@ const hasInvalidInput = (inputs) => {
   });
 };
 
+// Сделать кнопку submit неактивной
+const disableSubmitBtn = (submitBtn) => {
+  submitBtn.setAttribute('disabled', true)
+  submitBtn.classList.remove(validationObject.submitButtonSelector);
+};
+
+// Сделать кнопку submit активной
+const enableSubmitBtn = (submitBtn) => {
+  submitBtn.removeAttribute('disabled');
+  submitBtn.classList.add(validationObject.submitButtonSelector);
+}
+
 // Делаем активной кнопку отправки формы, если поля валидны
 const toggleButtonState = (inputs, submitBtn) => {
   if (!hasInvalidInput(inputs)) {
-    submitBtn.removeAttribute('disabled')
-    submitBtn.classList.add(validationObject.submitButtonSelector);
+    enableSubmitBtn(submitBtn);
   } else {
-    submitBtn.setAttribute('disabled', true)
-    submitBtn.classList.remove(validationObject.submitButtonSelector);
+    disableSubmitBtn(submitBtn);
   }
 };
 

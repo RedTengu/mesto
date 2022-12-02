@@ -3,6 +3,7 @@
 // Переменные
 
 // Popup
+const popups = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_profile');
 const popupAddCard = document.querySelector('.popup_card-add');
 const popupGallery = document.querySelector('.popup_gallery');
@@ -33,39 +34,39 @@ const addValueProfile = () => {
   jobInput.value = jobProfile.textContent;
 };
 
+// Закрытие popup по клавише
+const handleEscClose = (evt) => {
+  if (evt.key === 'Escape') {
+    popups.forEach((popup) => {
+      closePopup(popup);
+    });
+  };
+};
+
+// Закрытие popup по оверлею
+const handleOverlayClose = (evt) => {
+  if (evt.target === evt.currentTarget) {
+    popups.forEach((popup) => {
+      closePopup(popup);
+    });
+  };
+};
+
 // Открытие и закрытие popup
 const openPopup = (popup) => {
-  addValueProfile();
-
   popup.classList.add('popup_opened');
 
-  document.addEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape') {
-      closePopup(popup);
-    };
-  });
+  document.addEventListener('keydown', handleEscClose);
 
-  popup.addEventListener('click', (evt) => {
-    if (evt.target === evt.currentTarget) {
-      closePopup(popup);
-    };
-  });
+  popup.addEventListener('click', handleOverlayClose);
 };
 
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
 
-  document.removeEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape') {
-      closePopup(popup);
-    };
-  });
+  document.removeEventListener('keydown', handleEscClose);
 
-  popup.removeEventListener('click', (evt) => {
-    if (evt.target === evt.currentTarget) {
-      closePopup(popup);
-    };
-  });
+  popup.removeEventListener('click', handleOverlayClose);
 };
 
 // Редактирование профиля
@@ -149,17 +150,15 @@ initialCards.forEach((card) => {
 
 // Открыть popup редактирования профиля
 btnEdit.addEventListener('click', () => {
+  addValueProfile();
   openPopup(popupProfile);
 });
 
 // Открыть popup добавления карточки
 btnAdd.addEventListener('click', () => {
-  const submitBtn = document.querySelectorAll('.popup__submit-input');
+  const submitBtn = formAdd.querySelector('.popup__submit-input');
 
-  submitBtn.forEach((btn) => {
-    btn.setAttribute('disabled', true)
-    btn.classList.remove('popup__submit-input_active');
-  });
+  disableSubmitBtn(submitBtn);
 
   openPopup(popupAddCard);
 });
