@@ -154,7 +154,7 @@ btnEdit.addEventListener('click', () => {
 btnAdd.addEventListener('click', () => {
   const submitBtn = formAdd.querySelector('.popup__submit-input');
 
-  disableSubmitBtn(submitBtn);
+  disableSubmitBtn(submitBtn, validationConfig);
 
   openPopup(popupAddCard);
 });

@@ -1,5 +1,5 @@
 // Валидация
-const validationObject = {
+const validationConfig = {
   formSelector: 'popup__form',
   inputSelector: 'popup__text-input',
   submitButtonSelector: 'popup__submit-input_active',
@@ -9,29 +9,29 @@ const validationObject = {
 };
 
 // Показ ошибки
-const showError = (form, input, errorMessage) => {
-  const error = form.querySelector(`.${validationObject.inputErrorClass}-${input.id}`);
-  error.classList.add(validationObject.errorClass);
+const showError = (form, input, errorMessage, validationConfig) => {
+  const error = form.querySelector(`.${validationConfig.inputErrorClass}-${input.id}`);
+  error.classList.add(validationConfig.errorClass);
   error.textContent = errorMessage;
 };
 
 // Скрытие ошибки
-const hideError = (form, input) => {
-  const error = form.querySelector(`.${validationObject.inputErrorClass}-${input.id}`);
-  error.classList.remove(validationObject.errorClass);
+const hideError = (form, input, validationConfig) => {
+  const error = form.querySelector(`.${validationConfig.inputErrorClass}-${input.id}`);
+  error.classList.remove(validationConfig.errorClass);
   error.textContent = '';
 };
 
 // Проверка валидности поля
-const validationForms = (form, input) => {
+const validationForms = (form, input, validationConfig) => {
   if (!input.validity.valid) {
     input.style.borderBottom = "1px solid #ff0000";
 
-    showError(form, input, input.validationMessage);
+    showError(form, input, input.validationMessage, validationConfig);
   } else {
     input.style.borderBottom = "1px solid rgba(0, 0, 0, .2)";
 
-    hideError(form, input);
+    hideError(form, input, validationConfig);
   };
 };
 
@@ -42,48 +42,48 @@ const hasInvalidInput = (inputs) => {
 };
 
 // Сделать кнопку submit неактивной
-const disableSubmitBtn = (submitBtn) => {
+const disableSubmitBtn = (submitBtn, validationConfig) => {
   submitBtn.setAttribute('disabled', true)
-  submitBtn.classList.remove(validationObject.submitButtonSelector);
+  submitBtn.classList.remove(validationConfig.submitButtonSelector);
 };
 
 // Сделать кнопку submit активной
-const enableSubmitBtn = (submitBtn) => {
+const enableSubmitBtn = (submitBtn, validationConfig) => {
   submitBtn.removeAttribute('disabled');
-  submitBtn.classList.add(validationObject.submitButtonSelector);
+  submitBtn.classList.add(validationConfig.submitButtonSelector);
 }
 
 // Делаем активной кнопку отправки формы, если поля валидны
-const toggleButtonState = (inputs, submitBtn) => {
+const toggleButtonState = (inputs, submitBtn, validationConfig) => {
   if (!hasInvalidInput(inputs)) {
-    enableSubmitBtn(submitBtn);
+    enableSubmitBtn(submitBtn, validationConfig);
   } else {
-    disableSubmitBtn(submitBtn);
+    disableSubmitBtn(submitBtn, validationConfig);
   }
 };
 
 // Добавляем слушатель всем полям
-const setEventListeners = (form) => {
-  const inputs = Array.from(form.querySelectorAll(`.${validationObject.inputSelector}`));
-  const submitBtn = form.querySelector(`.${validationObject.inactiveButtonClass}`);
+const setEventListeners = (form, validationConfig) => {
+  const inputs = Array.from(form.querySelectorAll(`.${validationConfig.inputSelector}`));
+  const submitBtn = form.querySelector(`.${validationConfig.inactiveButtonClass}`);
 
-  toggleButtonState(inputs, submitBtn);
+  toggleButtonState(inputs, submitBtn, validationConfig);
 
   inputs.forEach((input) => {
     input.addEventListener('input', () => {
-      validationForms(form, input);
-      toggleButtonState(inputs, submitBtn);
+      validationForms(form, input, validationConfig);
+      toggleButtonState(inputs, submitBtn, validationConfig);
     });
   });
 };
 
 // Добавляем ф-цию валидации всем формам
-const enableValidation = () => {
-  const forms = Array.from(document.querySelectorAll(`.${validationObject.formSelector}`));
+const enableValidation = (validationConfig) => {
+  const forms = Array.from(document.querySelectorAll(`.${validationConfig.formSelector}`));
 
   forms.forEach((form) => {
-    setEventListeners(form);
+    setEventListeners(form, validationConfig);
   });
 };
 
-enableValidation(validationObject);
+enableValidation(validationConfig);
