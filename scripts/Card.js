@@ -20,11 +20,35 @@ export class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+    this._setEventListeners();
 
     this._element.querySelector('.card__title').textContent = this._name;
     this._element.querySelector('.card__img').src = this._link;
 
     return this._element;
+  }
+
+  _handleLikeClick() {
+    this._element
+    .querySelector('.card__like-btn')
+    .classList.toggle('card__like-btn_active');
+  }
+
+  _handleDeleteClick() {
+    this._element.remove();
+  }
+
+  _setEventListeners() {
+    const likeBtn = this._element.querySelector('.card__like-btn');
+    const deleteBtn = this._element.querySelector('.card__delete-btn');
+
+    likeBtn.addEventListener('click', () => {
+      this._handleLikeClick();
+    });
+
+    deleteBtn.addEventListener('click', () => {
+      this._handleDeleteClick();
+    });
   }
 }
 
