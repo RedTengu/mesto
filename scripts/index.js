@@ -1,5 +1,3 @@
-// "Можно лучше" поправлю позже, обещаю :)
-
 // Переменные
 
 // Popup
@@ -23,7 +21,7 @@ const cardSrcInput = document.querySelector('.popup__text-input_card_src');
 const nameProfile = document.querySelector('.profile__nickname');
 const jobProfile = document.querySelector('.profile__bio');
 // Карточки и шаблон
-const galleryCards = document.querySelector('.gallery__cards');
+export const galleryCards = document.querySelector('.gallery__cards');
 const cardTemplate = document.querySelector('.card-template').content;
 
 // Функции
