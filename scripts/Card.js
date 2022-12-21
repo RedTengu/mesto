@@ -1,6 +1,5 @@
-import initialCards from './initial-cards.js'
-import {galleryCards, popupGallery, popupImg, popupCaption} from './variables.js'
-import {openPopup} from './index.js' // нужен ли клоуз?
+// import {openPopup} from './index.js'
+import {popupGallery, popupImg, popupCaption} from './variables.js'
 
 class Card {
   constructor(cardParameter, templateSelector) {
@@ -24,22 +23,13 @@ class Card {
     return cardTemplate;
   }
 
-  generateCard() {
-    this._cardTitle.textContent = this._name;
-    this._cardImg.src = this._link;
-    this._cardImg.alt = this._cardTitle.textContent;
-
-    this._setEventListeners();
-
-    return this._element;
-  }
-
   _handleLikeClick() {
     this._likeBtn.classList.toggle('card__like-btn_active');
   }
 
   _handleDeleteClick() {
     this._element.remove();
+    this._element = null;
   }
 
   _handleOpenImgPopup() {
@@ -50,29 +40,23 @@ class Card {
   }
 
   _setEventListeners() {
-    this._likeBtn.addEventListener('click', () => {
-      this._handleLikeClick();
-    });
+    this._likeBtn.addEventListener('click', () => this._handleLikeClick());
 
-    this._deleteBtn.addEventListener('click', () => {
-      this._handleDeleteClick();
-    });
+    this._deleteBtn.addEventListener('click', () => this._handleDeleteClick());
 
-    this._cardImg.addEventListener('click', () => {
-      this._handleOpenImgPopup();
-    });
+    this._cardImg.addEventListener('click', () => this._handleOpenImgPopup());
+  }
+
+  generateCard() {
+    this._cardTitle.textContent = this._name;
+    this._cardImg.src = this._link;
+    this._cardImg.alt = this._cardTitle.textContent;
+
+    this._setEventListeners();
+
+    return this._element;
   }
 }
 
-// Посмотреть куда его деть
-const renderCard = () => {
-  initialCards.forEach(element => {
-    const card = new Card(element, '.card-template');
+export default Card
 
-    const cardElement = card.generateCard();
-
-    galleryCards.append(cardElement);
-  });
-}
-
-renderCard();

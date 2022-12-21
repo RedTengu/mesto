@@ -1,12 +1,11 @@
 // Переменные
+import Card from './Card.js'
+import {initialCards} from './initial-cards.js'
+import {galleryCards} from './variables.js';
 
 // Popup
-const popups = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_profile');
 const popupAddCard = document.querySelector('.popup_card-add');
-const popupGallery = document.querySelector('.popup_gallery');
-const popupImg = popupGallery.querySelector('.popup__img');
-const popupCaption = popupGallery.querySelector('.popup__caption');
 const btnEdit = document.querySelector('.profile__edit-btn');
 const btnAdd = document.querySelector('.profile__add-btn');
 const btnsClose = document.querySelectorAll('.popup__btn-close');
@@ -20,9 +19,6 @@ const cardSrcInput = document.querySelector('.popup__text-input_card_src');
 // Данные профиля
 const nameProfile = document.querySelector('.profile__nickname');
 const jobProfile = document.querySelector('.profile__bio');
-// Карточки и шаблон
-export const galleryCards = document.querySelector('.gallery__cards');
-const cardTemplate = document.querySelector('.card-template').content;
 
 // Функции
 
@@ -74,13 +70,28 @@ function handleEditFormSubmit (evt) {
 
 // Карточки
 
-// Добавление карточки
+// Создание и добавление экземпляров карточек
+const renderCard = (cardParameter) => {
+  const card = new Card(cardParameter, '.card-template');
+
+  const cardElement = card.generateCard();
+
+  galleryCards.append(cardElement);
+}
+
 function handleAddFormSubmit (evt) {
   evt.preventDefault();
   renderCard({name: cardNameInput.value, link: cardSrcInput.value});
   closePopup(popupAddCard);
   formAdd.reset();
 };
+
+// Инициализация начальных карточек
+const createDefaultCards = (cardParameter) => {
+  cardParameter.forEach(item => renderCard(item));
+}
+
+createDefaultCards(initialCards);
 
 // // Генерация карточек
 // const generateCard = (card) => {
@@ -144,7 +155,7 @@ btnEdit.addEventListener('click', () => {
 btnAdd.addEventListener('click', () => {
   const submitBtn = formAdd.querySelector('.popup__submit-input');
 
-  disableSubmitBtn(submitBtn, validationConfig);
+  // disableSubmitBtn(submitBtn, validationConfig);
 
   openPopup(popupAddCard);
 });
@@ -160,5 +171,6 @@ formEdit.addEventListener('submit', handleEditFormSubmit);
 
 // Сохранить добавляемую карточку
 formAdd.addEventListener('submit', handleAddFormSubmit);
+
 
 export {openPopup}

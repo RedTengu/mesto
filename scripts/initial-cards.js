@@ -26,4 +26,4 @@ const initialCards = [
   }
 ];
 
-export default initialCards
+export {initialCards}
