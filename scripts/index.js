@@ -1,24 +1,20 @@
 // Переменные
 import Card from './Card.js'
-import {initialCards} from './initial-cards.js'
-import {galleryCards} from './variables.js';
-
-// Popup
-const popupProfile = document.querySelector('.popup_profile');
-const popupAddCard = document.querySelector('.popup_card-add');
-const btnEdit = document.querySelector('.profile__edit-btn');
-const btnAdd = document.querySelector('.profile__add-btn');
-const btnsClose = document.querySelectorAll('.popup__btn-close');
-// Form и input
-const formEdit = popupProfile.querySelector('.popup__edit-form');
-const formAdd = popupAddCard.querySelector('.popup__add-form');
-const nameInput = formEdit.querySelector('.popup__text-input_profile_name');
-const jobInput = formEdit.querySelector('.popup__text-input_profile_job');
-const cardNameInput = document.querySelector('.popup__text-input_card_name');
-const cardSrcInput = document.querySelector('.popup__text-input_card_src');
-// Данные профиля
-const nameProfile = document.querySelector('.profile__nickname');
-const jobProfile = document.querySelector('.profile__bio');
+import initialCards from './initial-cards.js'
+import {galleryCards,
+        popupProfile,
+        popupAddCard,
+        btnEdit,
+        btnAdd,
+        btnsClose,
+        formEdit,
+        formAdd,
+        nameInput,
+        jobInput,
+        cardNameInput,
+        cardSrcInput,
+        nameProfile,
+        jobProfile} from './variables.js';
 
 // Функции
 

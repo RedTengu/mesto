@@ -1,7 +1,7 @@
 import {openPopup} from './index.js'
 import {popupGallery, popupImg, popupCaption} from './variables.js'
 
-class Card {
+export default class Card {
   constructor(cardParameter, templateSelector) {
     this._name = cardParameter.name;
     this._link = cardParameter.link;
@@ -57,6 +57,4 @@ class Card {
     return this._element;
   }
 }
-
-export default Card
 
