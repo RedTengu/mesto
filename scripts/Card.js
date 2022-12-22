@@ -1,4 +1,4 @@
-// import {openPopup} from './index.js'
+import {openPopup} from './index.js'
 import {popupGallery, popupImg, popupCaption} from './variables.js'
 
 class Card {
