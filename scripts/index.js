@@ -1,7 +1,7 @@
 import Card from './Card.js'
-import validationConfig from './validation.js';
+import validationConfig from './validationConfig.js';
 import FormValidator from './FormValidator.js';
-import initialCards from './initial-cards.js'
+import initialCards from './initialCards.js'
 import {galleryCards,
         popupProfile,
         popupAddCard,
