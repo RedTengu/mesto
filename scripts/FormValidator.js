@@ -17,6 +17,7 @@ export default class FormValidator {
   _showError(input) {
     const errorElement = this._formElement.querySelector(`.${this._inputErrorClass}-${input.id}`);
     errorElement.classList.add(this._errorClass);
+    input.style.borderBottom = "1px solid #ff0000";
     errorElement.textContent = input.validationMessage;
   }
 
@@ -24,6 +25,7 @@ export default class FormValidator {
   _hideError(input) {
     const errorElement = this._formElement.querySelector(`.${this._inputErrorClass}-${input.id}`);
     errorElement.classList.remove(this._errorClass);
+    input.style.borderBottom = "1px solid rgba(0, 0, 0, .2)";
     errorElement.textContent = '';
   }
 
@@ -58,12 +60,8 @@ export default class FormValidator {
   // Показ или скрытие ошибки, в зависимости от валидности input
   _isValid(input) {
     if (!input.validity.valid) {
-      input.style.borderBottom = "1px solid #ff0000";
-
       this._showError(input);
     } else {
-      input.style.borderBottom = "1px solid rgba(0, 0, 0, .2)";
-
       this._hideError(input);
     };
   };
@@ -83,6 +81,7 @@ export default class FormValidator {
   validationFormsCheck() {
     this._inputList.forEach((input) => {
       this._isValid(input);
+      this._hideError(input);
     });
     this._toggleButtonState();
   }

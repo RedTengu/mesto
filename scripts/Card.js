@@ -1,5 +1,5 @@
-import {openPopup} from './index.js'
-import {popupGallery, popupImg, popupCaption} from './variables.js'
+import {openPopup} from './utils/utils.js'
+import {popupGallery, popupImg, popupCaption} from './constants.js'
 
 export default class Card {
   constructor(cardParameter, templateSelector) {

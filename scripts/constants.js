@@ -11,10 +11,10 @@ const btnEdit = document.querySelector('.profile__edit-btn');
 const btnAdd = document.querySelector('.profile__add-btn');
 const btnsClose = document.querySelectorAll('.popup__btn-close');
 // Forms и inputs
-const formEdit = popupProfile.querySelector('.popup__edit-form');
-const formAdd = popupAddCard.querySelector('.popup__add-form');
-const nameInput = formEdit.querySelector('.popup__text-input_profile_name');
-const jobInput = formEdit.querySelector('.popup__text-input_profile_job');
+const formEditProfile = popupProfile.querySelector('.popup__edit-form');
+const formAddCard = popupAddCard.querySelector('.popup__add-form');
+const nameInput = formEditProfile.querySelector('.popup__text-input_profile_name');
+const jobInput = formEditProfile.querySelector('.popup__text-input_profile_job');
 const cardNameInput = document.querySelector('.popup__text-input_card_name');
 const cardSrcInput = document.querySelector('.popup__text-input_card_src');
 // Данные профиля
@@ -30,8 +30,8 @@ export {galleryCards,
         btnEdit,
         btnAdd,
         btnsClose,
-        formEdit,
-        formAdd,
+        formEditProfile,
+        formAddCard,
         nameInput,
         jobInput,
         cardNameInput,
