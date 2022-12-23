@@ -80,7 +80,7 @@ export default class FormValidator {
   }
 
   // Проверка состояния кнопки в зависимости от валидности input
-  validationForms() {
+  validationFormsCheck() {
     this._inputList.forEach((input) => {
       this._isValid(input);
     });

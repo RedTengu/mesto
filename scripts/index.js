@@ -97,14 +97,14 @@ createDefaultCards(initialCards);
 const editFormValidation = () => {
   const validation = new FormValidator(validationConfig, formEdit);
   validation.enableValidation();
-  validation.validationForms();
+  validation.validationFormsCheck();
 }
 
 // Функция создает экземпляр валидации для формы добавления карточки
 const addFormValidation = () => {
   const validation = new FormValidator(validationConfig, formAdd);
   validation.enableValidation();
-  validation.validationForms();
+  validation.validationFormsCheck();
 }
 
 // Обработчики
