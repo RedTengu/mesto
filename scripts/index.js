@@ -1,5 +1,6 @@
 // Переменные
 import Card from './Card.js'
+import validationConfig from './validation.js';
 import FormValidator from './FormValidator.js';
 import initialCards from './initial-cards.js'
 import {galleryCards,
@@ -139,6 +140,15 @@ createDefaultCards(initialCards);
 
 //   return cardElem;
 // };
+
+
+const validationCheck = (validationConfig, formElement) => {
+  const validation = new FormValidator(validationConfig, formElement);
+  validation.enableValidation();
+};
+
+validationCheck(validationConfig, formEdit);
+validationCheck(validationConfig, formAdd);
 
 // Обработчики
 
