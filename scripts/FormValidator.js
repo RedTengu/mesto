@@ -56,7 +56,7 @@ export default class FormValidator {
   }
 
   // Показ или скрытие ошибки, в зависимости от валидности input
-  _validationForms(input) {
+  _isValid(input) {
     if (!input.validity.valid) {
       input.style.borderBottom = "1px solid #ff0000";
 
@@ -72,11 +72,19 @@ export default class FormValidator {
   _setEventListeners() {
     this._inputList.forEach(input => {
       input.addEventListener('input', () => {
-        this._validationForms(input);
+        this._isValid(input);
 
         this._toggleButtonState();
       });
     });
+  }
+
+  // Проверка состояния кнопки в зависимости от валидности input
+  validationForms() {
+    this._inputList.forEach((input) => {
+      this._isValid(input);
+    });
+    this._toggleButtonState();
   }
 
   // Включить валидацию формы

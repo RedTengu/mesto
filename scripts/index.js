@@ -93,25 +93,32 @@ createDefaultCards(initialCards);
 
 // Функции валидации
 
-// Универсальная ф-ция проверки валидности формы
-const validationCheck = (validationConfig, formElement) => {
-  const validation = new FormValidator(validationConfig, formElement);
+// Функция создает экземпляр валидации для формы редактирования профиля
+const editFormValidation = () => {
+  const validation = new FormValidator(validationConfig, formEdit);
   validation.enableValidation();
-};
+  validation.validationForms();
+}
 
-validationCheck(validationConfig, formEdit);
-validationCheck(validationConfig, formAdd);
+// Функция создает экземпляр валидации для формы добавления карточки
+const addFormValidation = () => {
+  const validation = new FormValidator(validationConfig, formAdd);
+  validation.enableValidation();
+  validation.validationForms();
+}
 
 // Обработчики
 
 // Открыть popup редактирования профиля
 btnEdit.addEventListener('click', () => {
   addValueProfile();
+  editFormValidation();
   openPopup(popupProfile);
 });
 
 // Открыть popup добавления карточки
 btnAdd.addEventListener('click', () => {
+  addFormValidation();
   openPopup(popupAddCard);
 });
 
