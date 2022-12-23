@@ -1,4 +1,3 @@
-// Переменные
 import Card from './Card.js'
 import validationConfig from './validation.js';
 import FormValidator from './FormValidator.js';
@@ -18,7 +17,7 @@ import {galleryCards,
         nameProfile,
         jobProfile} from './variables.js';
 
-// Функции
+// Функции popup
 
 // Добавление value в popup профиля
 const addValueProfile = () => {
@@ -66,7 +65,15 @@ function handleEditFormSubmit (evt) {
   closePopup(popupProfile);
 };
 
-// Карточки
+// Создание карточки места
+function handleAddFormSubmit (evt) {
+  evt.preventDefault();
+  renderCard({name: cardNameInput.value, link: cardSrcInput.value});
+  closePopup(popupAddCard);
+  formAdd.reset();
+};
+
+// Функции карточек
 
 // Создание и добавление экземпляров карточек
 const renderCard = (cardParameter) => {
@@ -77,13 +84,6 @@ const renderCard = (cardParameter) => {
   galleryCards.append(cardElement);
 }
 
-function handleAddFormSubmit (evt) {
-  evt.preventDefault();
-  renderCard({name: cardNameInput.value, link: cardSrcInput.value});
-  closePopup(popupAddCard);
-  formAdd.reset();
-};
-
 // Инициализация начальных карточек
 const createDefaultCards = (cardParameter) => {
   cardParameter.forEach(item => renderCard(item));
@@ -91,57 +91,9 @@ const createDefaultCards = (cardParameter) => {
 
 createDefaultCards(initialCards);
 
-// // Генерация карточек
-// const generateCard = (card) => {
-//   // Клонируем шаблон
-//   const cardElem = cardTemplate.cloneNode(true);
-//   // Получаем заголовок и картинку карточки
-//   const cardTitle = cardElem.querySelector('.card__title');
-//   const cardImg = cardElem.querySelector('.card__img');
-//   // Получаем кнопку лайка и удаления
-//   const btnLike = cardElem.querySelector('.card__like-btn');
-//   const btnDelete = cardElem.querySelector('.card__delete-btn');
+// Функции валидации
 
-//   // Добавляем значения картинке карточек
-//   const addValueImgCard = () => {
-//     cardTitle.textContent = card.name;
-//     cardImg.alt = cardTitle.textContent;
-//     cardImg.src = card.link;
-//   };
-
-//   addValueImgCard();
-
-//   // Открытие картинки карточки
-//   const handleOpenImgPopup = () => {
-//     popupImg.src = cardImg.src;
-//     popupImg.alt = cardTitle.textContent;
-//     popupCaption.textContent = cardTitle.textContent;
-//     openPopup(popupGallery);
-//   };
-
-//   // Функция лайка
-//   const handleLikeClick = (evt) => {
-//     evt.target.classList.toggle('card__like-btn_active');
-//   };
-
-//   // Функция удаления
-//   const handleDeleteClick = (evt) => {
-//     evt.target.closest('.gallery__card-item').remove();
-//   };
-
-//   // Открытие popup с картинкой
-//   cardImg.addEventListener('click', handleOpenImgPopup);
-
-//   // Поставить лайк
-//   btnLike.addEventListener('click', handleLikeClick);
-
-//   // Удалить карточку
-//   btnDelete.addEventListener('click', handleDeleteClick);
-
-//   return cardElem;
-// };
-
-
+// Универсальная ф-ция проверки валидности формы
 const validationCheck = (validationConfig, formElement) => {
   const validation = new FormValidator(validationConfig, formElement);
   validation.enableValidation();
@@ -160,10 +112,6 @@ btnEdit.addEventListener('click', () => {
 
 // Открыть popup добавления карточки
 btnAdd.addEventListener('click', () => {
-  const submitBtn = formAdd.querySelector('.popup__submit-input');
-
-  // disableSubmitBtn(submitBtn, validationConfig);
-
   openPopup(popupAddCard);
 });
 

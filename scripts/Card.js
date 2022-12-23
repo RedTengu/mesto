@@ -3,9 +3,12 @@ import {popupGallery, popupImg, popupCaption} from './variables.js'
 
 export default class Card {
   constructor(cardParameter, templateSelector) {
+    // Прием объекта параметров карточек
     this._name = cardParameter.name;
     this._link = cardParameter.link;
+    // Прием шаблона карточек
     this._templateSelector = templateSelector;
+    // Получение элементов шаблона
     this._element = this._getTemplate();
     this._likeBtn = this._element.querySelector('.card__like-btn');
     this._deleteBtn = this._element.querySelector('.card__delete-btn');
@@ -13,6 +16,7 @@ export default class Card {
     this._cardImg = this._element.querySelector('.card__img');
   }
 
+  // Получение шаблона из полученного параметра
   _getTemplate() {
     const cardTemplate = document
       .querySelector(this._templateSelector)
@@ -23,15 +27,18 @@ export default class Card {
     return cardTemplate;
   }
 
+  // Поставить или убрать лайк
   _handleLikeClick() {
     this._likeBtn.classList.toggle('card__like-btn_active');
   }
 
+  // Удаление карточки
   _handleDeleteClick() {
     this._element.remove();
     this._element = null;
   }
 
+  // Открыть popup картинки
   _handleOpenImgPopup() {
     popupImg.src = this._cardImg.src;
     popupCaption.textContent = this._cardTitle.textContent;
@@ -39,6 +46,7 @@ export default class Card {
     openPopup(popupGallery);
   }
 
+  // Добавить слушатели для лайка, удаления и popup
   _setEventListeners() {
     this._likeBtn.addEventListener('click', () => this._handleLikeClick());
 
@@ -47,6 +55,7 @@ export default class Card {
     this._cardImg.addEventListener('click', () => this._handleOpenImgPopup());
   }
 
+  // Генерация карточки
   generateCard() {
     this._cardTitle.textContent = this._name;
     this._cardImg.src = this._link;

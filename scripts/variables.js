@@ -1,6 +1,6 @@
 // Контейнер карточек
 const galleryCards = document.querySelector('.gallery__cards');
-// Popup
+// Popups
 const popupGallery = document.querySelector('.popup_gallery');
 const popupImg = popupGallery.querySelector('.popup__img');
 const popupCaption = popupGallery.querySelector('.popup__caption');
@@ -10,7 +10,7 @@ const popupAddCard = document.querySelector('.popup_card-add');
 const btnEdit = document.querySelector('.profile__edit-btn');
 const btnAdd = document.querySelector('.profile__add-btn');
 const btnsClose = document.querySelectorAll('.popup__btn-close');
-// Form и input
+// Forms и inputs
 const formEdit = popupProfile.querySelector('.popup__edit-form');
 const formAdd = popupAddCard.querySelector('.popup__add-form');
 const nameInput = formEdit.querySelector('.popup__text-input_profile_name');
