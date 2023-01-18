@@ -16,7 +16,9 @@ import {galleryCards,
         cardSrcInput,
         nameProfile,
         jobProfile} from './constants.js';
-import {openPopup, closePopup} from './utils/utils.js';
+import Popup from './components/Popup.js';
+
+const popupEdit = new Popup(popupProfile);
 
 // Функции popup
 
@@ -32,16 +34,16 @@ function handleEditFormSubmit (evt) {
 
   nameProfile.textContent = nameInput.value;
   jobProfile.textContent = jobInput.value;
-  closePopup(popupProfile);
+  popupEdit.closePopup();
 };
 
-// Создание карточки места
-function handleAddFormSubmit (evt) {
-  evt.preventDefault();
-  renderCard({name: cardNameInput.value, link: cardSrcInput.value});
-  closePopup(popupAddCard);
-  formAddCard.reset();
-};
+// // Создание карточки места
+// function handleAddFormSubmit (evt) {
+//   evt.preventDefault();
+//   renderCard({name: cardNameInput.value, link: cardSrcInput.value});
+//   closePopup(popupAddCard);
+//   formAddCard.reset();
+// };
 
 // Функции карточек
 
@@ -77,7 +79,8 @@ createDefaultCards(initialCards);
 btnEdit.addEventListener('click', () => {
   addValueProfile();
   editFormValidation.validationFormsCheck();
-  openPopup(popupProfile);
+  popupEdit.openPopup();
+  popupEdit.setEventListeners();
 });
 
 // Открыть popup добавления карточки
