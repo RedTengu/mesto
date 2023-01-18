@@ -1,5 +1,5 @@
-import {openPopup} from './utils/utils.js'
-import {popupGallery, popupImg, popupCaption} from './constants.js'
+// import {openPopup} from './utils/utils.js'
+// import {popupGallery, popupImg, popupCaption} from './constants.js'
 
 export default class Card {
   constructor(cardParameter, templateSelector) {
@@ -39,12 +39,12 @@ export default class Card {
   }
 
   // Открыть popup картинки
-  _handleOpenImgPopup() {
-    popupImg.src = this._cardImg.src;
-    popupCaption.textContent = this._cardTitle.textContent;
+  // _handleOpenImgPopup() {
+  //   popupImg.src = this._cardImg.src;
+  //   popupCaption.textContent = this._cardTitle.textContent;
 
-    openPopup(popupGallery);
-  }
+  //   openPopup(popupGallery);
+  // }
 
   // Добавить слушатели для лайка, удаления и popup
   _setEventListeners() {

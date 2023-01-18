@@ -7,7 +7,6 @@ import {galleryCards,
         popupAddCard,
         btnEdit,
         btnAdd,
-        btnsClose,
         formEditProfile,
         formAddCard,
         nameInput,
@@ -18,7 +17,8 @@ import {galleryCards,
         jobProfile} from './constants.js';
 import Popup from './components/Popup.js';
 
-const popupEdit = new Popup(popupProfile);
+const profilePopup = new Popup(popupProfile);
+const addCardPopup = new Popup(popupAddCard);
 
 // Функции popup
 
@@ -38,12 +38,12 @@ function handleEditFormSubmit (evt) {
 };
 
 // // Создание карточки места
-// function handleAddFormSubmit (evt) {
-//   evt.preventDefault();
-//   renderCard({name: cardNameInput.value, link: cardSrcInput.value});
-//   closePopup(popupAddCard);
-//   formAddCard.reset();
-// };
+function handleAddFormSubmit (evt) {
+  evt.preventDefault();
+  renderCard({name: cardNameInput.value, link: cardSrcInput.value});
+  addCardPopup.closePopup();
+  formAddCard.reset();
+};
 
 // Функции карточек
 
@@ -79,20 +79,15 @@ createDefaultCards(initialCards);
 btnEdit.addEventListener('click', () => {
   addValueProfile();
   editFormValidation.validationFormsCheck();
-  popupEdit.openPopup();
-  popupEdit.setEventListeners();
+  profilePopup.openPopup();
+  profilePopup.setEventListeners();
 });
 
 // Открыть popup добавления карточки
 btnAdd.addEventListener('click', () => {
   addFormValidation.validationFormsCheck();
-  openPopup(popupAddCard);
-});
-
-// Закрыть любой popup кнопкой
-btnsClose.forEach((btn) => {
-  const popup = btn.closest('.popup');
-  btn.addEventListener('click', () => closePopup(popup));
+  addCardPopup.openPopup();
+  addCardPopup.setEventListeners();
 });
 
 // Сохранить изменения профиля
