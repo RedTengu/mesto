@@ -1,8 +1,5 @@
-// import {openPopup} from './utils/utils.js'
-// import {popupGallery, popupImg, popupCaption} from './constants.js'
-
 export default class Card {
-  constructor(cardParameter, templateSelector) {
+  constructor(cardParameter, templateSelector, handleCardClick) {
     // Прием объекта параметров карточек
     this._name = cardParameter.name;
     this._link = cardParameter.link;
@@ -14,6 +11,8 @@ export default class Card {
     this._deleteBtn = this._element.querySelector('.card__delete-btn');
     this._cardTitle = this._element.querySelector('.card__title');
     this._cardImg = this._element.querySelector('.card__img');
+    // Функция открывающая попап картинки
+    this._handleCardClick = handleCardClick;
   }
 
   // Получение шаблона из полученного параметра
@@ -38,21 +37,13 @@ export default class Card {
     this._element = null;
   }
 
-  // Открыть popup картинки
-  // _handleOpenImgPopup() {
-  //   popupImg.src = this._cardImg.src;
-  //   popupCaption.textContent = this._cardTitle.textContent;
-
-  //   openPopup(popupGallery);
-  // }
-
   // Добавить слушатели для лайка, удаления и popup
   _setEventListeners() {
     this._likeBtn.addEventListener('click', () => this._handleLikeClick());
 
     this._deleteBtn.addEventListener('click', () => this._handleDeleteClick());
 
-    this._cardImg.addEventListener('click', () => this._handleOpenImgPopup());
+    this._cardImg.addEventListener('click', () => this._handleCardClick(this._name, this._link));
   }
 
   // Генерация карточки

@@ -2,8 +2,6 @@
 const galleryCards = document.querySelector('.gallery__cards');
 // Popups
 const popupGallery = document.querySelector('.popup_gallery');
-// const popupImg = popupGallery.querySelector('.popup__img');
-// const popupCaption = popupGallery.querySelector('.popup__caption');
 const popupProfile = document.querySelector('.popup_profile');
 const popupAddCard = document.querySelector('.popup_card-add');
 // Кнопки popup
@@ -22,8 +20,6 @@ const jobProfile = document.querySelector('.profile__bio');
 
 export {galleryCards,
         popupGallery,
-        // popupImg,
-        // popupCaption,
         popupProfile,
         popupAddCard,
         btnEdit,

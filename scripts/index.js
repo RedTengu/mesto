@@ -5,6 +5,7 @@ import initialCards from './initialCards.js'
 import {galleryCards,
         popupProfile,
         popupAddCard,
+        popupGallery,
         btnEdit,
         btnAdd,
         formEditProfile,
@@ -16,9 +17,15 @@ import {galleryCards,
         nameProfile,
         jobProfile} from './constants.js';
 import Popup from './components/Popup.js';
+import Section from './components/Section.js';
+import PopupWithImage from './components/PopupWithImage.js';
 
 const profilePopup = new Popup(popupProfile);
+
 const addCardPopup = new Popup(popupAddCard);
+
+const imagePopup = new PopupWithImage(popupGallery)
+imagePopup.setEventListeners();
 
 // Функции popup
 
@@ -34,22 +41,47 @@ function handleEditFormSubmit (evt) {
 
   nameProfile.textContent = nameInput.value;
   jobProfile.textContent = jobInput.value;
-  popupEdit.closePopup();
+
+  profilePopup.closePopup();
+  profilePopup.revomeEventListeners();
 };
 
 // // Создание карточки места
 function handleAddFormSubmit (evt) {
   evt.preventDefault();
+
   renderCard({name: cardNameInput.value, link: cardSrcInput.value});
+
   addCardPopup.closePopup();
+  addCardPopup.revomeEventListeners();
+
   formAddCard.reset();
 };
+
+function handleCardClick(name, link) {
+  imagePopup.openPopup(name, link);
+}
+
+// const cardList = new Section({
+//   items: initialCards,
+//   renderer: (cardParameter) => {
+//     const card = new Card(cardParameter, '.card-template');
+
+//     const cardElement = card.generateCard();
+//     cardList.check();
+//     cardList.addItem(cardElement);
+//   },
+//   galleryCards
+// });
+
+// cardList.renderItems();
+
 
 // Функции карточек
 
 // Создание и добавление экземпляров карточек
 const renderCard = (cardParameter) => {
-  const card = new Card(cardParameter, '.card-template');
+  const card = new Card(cardParameter, '.card-template', handleCardClick);
 
   const cardElement = card.generateCard();
 
@@ -57,11 +89,11 @@ const renderCard = (cardParameter) => {
 }
 
 // Инициализация начальных карточек
-const createDefaultCards = (cardParameter) => {
-  cardParameter.forEach(item => renderCard(item));
-}
+// const createDefaultCards = (cardParameter) => {
+//   cardParameter.forEach(item => renderCard(item));
+// }
 
-createDefaultCards(initialCards);
+// createDefaultCards(initialCards);
 
 // Функции валидации
 
