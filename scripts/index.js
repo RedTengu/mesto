@@ -20,6 +20,7 @@ import Popup from './components/Popup.js';
 import Section from './components/Section.js';
 import PopupWithImage from './components/PopupWithImage.js';
 import PopupWithForm from './components/PopupWithForm.js';
+import UserInfo from './components/UserInfo.js';
 
 const profilePopup = new Popup(popupProfile);
 
@@ -30,10 +31,23 @@ imagePopup.setEventListeners();
 
 // Функции popup
 
+const userInfo = new UserInfo({name: nameProfile, job: jobProfile})
+
+const popupEdit = new PopupWithForm({
+  popupSelector: popupProfile,
+  handleSubmitForm: (inputValues) => {
+    userInfo.setUserInfo(inputValues);
+    popupEdit.closePopup();
+  }
+})
+
+popupEdit.setEventListeners();
+
 // Добавление value в popup профиля
 const addValueProfile = () => {
-  nameInput.value = nameProfile.textContent;
-  jobInput.value = jobProfile.textContent;
+  const userValues = userInfo.getUserInfo();
+  nameInput.value = userValues.name;
+  jobInput.value = userValues.job;
 };
 
 // Редактирование профиля
