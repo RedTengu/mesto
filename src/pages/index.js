@@ -1,3 +1,4 @@
+// "Можно лучше" сделаю позже, обещаю :)
 import Popup from '../scripts/components/Popup.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
@@ -93,6 +94,8 @@ const popupNewCard = new PopupWithForm({
 });
 
 // Обработчики
+profilePopup.setEventListeners();
+cardPopup.setEventListeners();
 popupNewCard.setEventListeners();
 popupEdit.setEventListeners();
 imagePopup.setEventListeners();
@@ -102,12 +105,10 @@ btnEdit.addEventListener('click', () => {
   addValueProfile();
   editFormValidation.validationFormsCheck();
   profilePopup.openPopup();
-  profilePopup.setEventListeners();
 });
 
 // Открыть popup добавления карточки
 btnAdd.addEventListener('click', () => {
   addFormValidation.validationFormsCheck();
   cardPopup.openPopup();
-  cardPopup.setEventListeners();
 });
