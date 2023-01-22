@@ -1,12 +1,12 @@
-import Popup from './components/Popup.js';
-import PopupWithImage from './components/PopupWithImage.js';
-import PopupWithForm from './components/PopupWithForm.js';
-import UserInfo from './components/UserInfo.js';
-import validationConfig from './validationConfig.js';
-import FormValidator from './FormValidator.js';
-import Section from './components/Section.js';
-import Card from './Card.js'
-import initialCards from './initialCards.js'
+import Popup from '../scripts/components/Popup.js';
+import PopupWithImage from '../scripts/components/PopupWithImage.js';
+import PopupWithForm from '../scripts/components/PopupWithForm.js';
+import UserInfo from '../scripts/components/UserInfo.js';
+import validationConfig from '../scripts/utils/validationConfig.js';
+import FormValidator from '../scripts/components/FormValidator.js';
+import Section from '../scripts/components/Section.js';
+import Card from '../scripts/components/Card.js'
+import initialCards from '../scripts/utils/initialCards.js'
 import {galleryCards,
   popupProfile,
   popupAddCard,
@@ -18,7 +18,8 @@ import {galleryCards,
   nameInput,
   jobInput,
   nameProfile,
-  jobProfile} from './constants.js';
+  jobProfile} from '../scripts/utils/constants.js';
+  import './index.css';
 
 // Попап профиля
 const profilePopup = new Popup(popupProfile);
