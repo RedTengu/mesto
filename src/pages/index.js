@@ -7,7 +7,9 @@ import validationConfig from '../scripts/utils/validationConfig.js';
 import FormValidator from '../scripts/components/FormValidator.js';
 import Section from '../scripts/components/Section.js';
 import Card from '../scripts/components/Card.js'
+import Api from '../scripts/components/Api.js';
 import initialCards from '../scripts/utils/initialCards.js'
+import apiConfig from '../scripts/utils/apiConfig.js';
 import {galleryCards,
   popupProfile,
   popupAddCard,
