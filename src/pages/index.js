@@ -77,17 +77,16 @@ function handleCardClick(name, link) {
   imagePopup.openPopup(name, link);
 }
 
-// Вставка карточки в разметку
-const newCard = new Section({
-  renderer: (cardParameter) => {
-    newCard.addItem(createNewCard(cardParameter));
-  }},
-  galleryCards
-);
-
 // Инициализация начальных карточек
 api.getInitialCards()
   .then(res => newCard.renderItems(res))
+
+const newCard = new Section({
+  renderer: (cardParameter) => {
+    newCard.addInitialItems(createNewCard(cardParameter));
+  }},
+  galleryCards
+);
 
 // Создание карточки через попап
 const popupNewCard = new PopupWithForm({
