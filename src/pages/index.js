@@ -78,22 +78,22 @@ function handleCardClick(name, link) {
 }
 
 // Вставка карточки в разметку
-const cardList = new Section({
+const newCard = new Section({
   renderer: (cardParameter) => {
-    cardList.addItem(createNewCard(cardParameter));
+    newCard.addItem(createNewCard(cardParameter));
   }},
   galleryCards
 );
 
 // Инициализация начальных карточек
 api.getInitialCards()
-  .then(res => cardList.renderItems(res))
+  .then(res => newCard.renderItems(res))
 
 // Создание карточки через попап
 const popupNewCard = new PopupWithForm({
   popupSelector: popupAddCard,
   handleSubmitForm: (inputValues) => {
-    cardList.addItem(createNewCard(inputValues));
+    newCard.addItem(createNewCard(inputValues));
     popupNewCard.closePopup();
   }
 });
