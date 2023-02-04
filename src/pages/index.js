@@ -1,4 +1,3 @@
-// "Можно лучше" сделаю позже, обещаю :)
 import Popup from '../scripts/components/Popup.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
@@ -8,7 +7,6 @@ import FormValidator from '../scripts/components/FormValidator.js';
 import Section from '../scripts/components/Section.js';
 import Card from '../scripts/components/Card.js'
 import Api from '../scripts/components/Api.js';
-import initialCards from '../scripts/utils/initialCards.js'
 import apiConfig from '../scripts/utils/apiConfig.js';
 import {galleryCards,
   popupProfile,
@@ -23,6 +21,10 @@ import {galleryCards,
   nameProfile,
   jobProfile} from '../scripts/utils/constants.js';
   import './index.css';
+
+
+// Инициализация Api
+const api = new Api(apiConfig);
 
 // Попап профиля
 const profilePopup = new Popup(popupProfile);
@@ -75,16 +77,17 @@ function handleCardClick(name, link) {
   imagePopup.openPopup(name, link);
 }
 
-// Инициализация начальных карточек
+// Вставка карточки в разметку
 const cardList = new Section({
-  items: initialCards,
   renderer: (cardParameter) => {
     cardList.addItem(createNewCard(cardParameter));
   }},
   galleryCards
 );
 
-cardList.renderItems();
+// Инициализация начальных карточек
+api.getInitialCards()
+  .then(res => cardList.renderItems(res))
 
 // Создание карточки через попап
 const popupNewCard = new PopupWithForm({

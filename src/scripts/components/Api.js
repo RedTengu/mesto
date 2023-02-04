@@ -9,11 +9,17 @@ export default class Api {
       return res.json();
     }
 
-    return Promise.reject(`Ошибка: ${res.status} ${res.statusText}`)
+    return Promise.reject(`Ошибка: ${res.status}`);
+  }
+
+  getProfileInfo() {
+    fetch(`${this._url}/users/me`, { headers: this._headers })
+      .then(res => this._isResponse(res))
+      .then(res => console.log(res))
   }
 
   getInitialCards() {
-    fetch(`${this._url}/cards`, { headers: this._headers })
+    return fetch(`${this._url}/cards`, { headers: this._headers })
       .then(res => this._isResponse(res))
   }
 }
