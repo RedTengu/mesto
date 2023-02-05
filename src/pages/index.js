@@ -99,6 +99,7 @@ const popupNewCard = new PopupWithForm({
   popupSelector: popupAddCard,
   handleSubmitForm: (inputValues) => {
     newCard.addItem(createNewCard(inputValues));
+    api.postNewCard(inputValues);
     popupNewCard.closePopup();
   }
 });
