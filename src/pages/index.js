@@ -19,7 +19,8 @@ import {galleryCards,
   nameInput,
   jobInput,
   nameProfile,
-  jobProfile} from '../scripts/utils/constants.js';
+  jobProfile,
+  avatarProfile } from '../scripts/utils/constants.js';
   import './index.css';
 
 
@@ -36,14 +37,18 @@ const cardPopup = new Popup(popupAddCard);
 const imagePopup = new PopupWithImage(popupGallery)
 
 // Информация о пользователе
-const userInfo = new UserInfo({name: nameProfile, job: jobProfile})
+const userInfo = new UserInfo({name: nameProfile, about: jobProfile})
+
+// Получаем инфо профиля с сервера
+api.getProfileInfo()
+  .then(res => userInfo.setUserInfo(res))
 
 // Добавление value в popup профиля
 const addValueProfile = () => {
   const userValues = userInfo.getUserInfo();
 
   nameInput.value = userValues.name;
-  jobInput.value = userValues.job;
+  jobInput.value = userValues.about;
 };
 
 // Создание экземпляра валидации для формы редактирования профиля

@@ -13,9 +13,8 @@ export default class Api {
   }
 
   getProfileInfo() {
-    fetch(`${this._url}/users/me`, { headers: this._headers })
+    return fetch(`${this._url}/users/me`, { headers: this._headers })
       .then(res => this._isResponse(res))
-      .then(res => console.log(res))
   }
 
   getInitialCards() {

@@ -17,6 +17,7 @@ const cardSrcInput = document.querySelector('.popup__text-input_card_src');
 // Данные профиля
 const nameProfile = document.querySelector('.profile__nickname');
 const jobProfile = document.querySelector('.profile__bio');
+const avatarProfile = document.querySelector('.profile__avatar');
 
 export {galleryCards,
         popupGallery,
@@ -31,4 +32,5 @@ export {galleryCards,
         cardNameInput,
         cardSrcInput,
         nameProfile,
-        jobProfile}
+        jobProfile,
+        avatarProfile}
