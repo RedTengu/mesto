@@ -64,6 +64,7 @@ const popupEdit = new PopupWithForm({
   popupSelector: popupProfile,
   handleSubmitForm: (inputValues) => {
     userInfo.setUserInfo(inputValues);
+    api.patchProfileInfo(inputValues);
     popupEdit.closePopup();
   }
 })
