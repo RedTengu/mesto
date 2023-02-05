@@ -8,6 +8,7 @@ export default class Card {
     // Получение элементов шаблона
     this._element = this._getTemplate();
     this._likeBtn = this._element.querySelector('.card__like-btn');
+    this._likeCount = this._element.querySelector('.card__like-count');
     this._deleteBtn = this._element.querySelector('.card__delete-btn');
     this._cardTitle = this._element.querySelector('.card__title');
     this._cardImg = this._element.querySelector('.card__img');
@@ -29,6 +30,16 @@ export default class Card {
   // Поставить или убрать лайк
   _handleLikeClick() {
     this._likeBtn.classList.toggle('card__like-btn_active');
+  }
+
+  isLiked() {
+    if (this._likeBtn.classList.contains('card__like-btn_active')) {
+      return true;
+    }
+  }
+
+  likeCounter(data) {
+    this._likeCount.textContent = data.likes.length;
   }
 
   // Удаление карточки
