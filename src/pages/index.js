@@ -14,13 +14,16 @@ import {galleryCards,
   popupGallery,
   btnEdit,
   btnAdd,
+  btnEditAvatar,
   formEditProfile,
   formAddCard,
+  formEditAvatar,
   nameInput,
   jobInput,
   nameProfile,
   jobProfile,
-  avatarProfile } from '../scripts/utils/constants.js';
+  avatarProfile,
+  popupAvatar } from '../scripts/utils/constants.js';
   import './index.css';
 
 
@@ -30,6 +33,9 @@ const api = new Api(apiConfig);
 // Попап профиля
 const profilePopup = new Popup(popupProfile);
 
+// Попап аватара
+const avatarPopup = new Popup(popupAvatar);
+
 // Попап добавления карты
 const cardPopup = new Popup(popupAddCard);
 
@@ -37,11 +43,14 @@ const cardPopup = new Popup(popupAddCard);
 const imagePopup = new PopupWithImage(popupGallery)
 
 // Информация о пользователе
-const userInfo = new UserInfo({name: nameProfile, about: jobProfile})
+const userInfo = new UserInfo({name: nameProfile, about: jobProfile, avatar: avatarProfile})
 
 // Получаем инфо профиля с сервера
 api.getProfileInfo()
-  .then(res => userInfo.setUserInfo(res))
+  .then(res => {
+    userInfo.setAvatar(res);
+    userInfo.setUserInfo(res);
+  })
 
 // Добавление value в popup профиля
 const addValueProfile = () => {
@@ -59,6 +68,10 @@ editFormValidation.enableValidation();
 const addFormValidation = new FormValidator(validationConfig, formAddCard);
 addFormValidation.enableValidation();
 
+// Создание экземпляра валидации для формы добавления аватара
+const avatarFormValidation = new FormValidator(validationConfig, formEditAvatar);
+avatarFormValidation.enableValidation();
+
 // Редактирование профиля
 const popupEdit = new PopupWithForm({
   popupSelector: popupProfile,
@@ -66,6 +79,16 @@ const popupEdit = new PopupWithForm({
     userInfo.setUserInfo(inputValues);
     api.patchProfileInfo(inputValues);
     popupEdit.closePopup();
+  }
+})
+
+// Редактирование аватара
+const popupEditAvatar = new PopupWithForm({
+  popupSelector: popupAvatar,
+  handleSubmitForm: (inputValues) => {
+    userInfo.setAvatar(inputValues);
+    api.patchAvatar(inputValues);
+    popupEditAvatar.closePopup();
   }
 })
 
@@ -106,8 +129,10 @@ const popupNewCard = new PopupWithForm({
 
 // Обработчики
 profilePopup.setEventListeners();
+avatarPopup.setEventListeners();
 cardPopup.setEventListeners();
 popupNewCard.setEventListeners();
+popupEditAvatar.setEventListeners();
 popupEdit.setEventListeners();
 imagePopup.setEventListeners();
 
@@ -117,6 +142,12 @@ btnEdit.addEventListener('click', () => {
   editFormValidation.validationFormsCheck();
   profilePopup.openPopup();
 });
+
+// Открыть popup редактирования аватара
+btnEditAvatar.addEventListener('click', () => {
+  avatarFormValidation.validationFormsCheck();
+  avatarPopup.openPopup();
+})
 
 // Открыть popup добавления карточки
 btnAdd.addEventListener('click', () => {
