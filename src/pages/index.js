@@ -147,9 +147,12 @@ const newCard = new Section({
 const popupNewCard = new PopupWithForm({
   popupSelector: popupAddCard,
   handleSubmitForm: (inputValues) => {
-    newCard.addItem(createNewCard(inputValues));
-    api.postNewCard(inputValues);
-    popupNewCard.closePopup();
+    api.postNewCard(inputValues)
+      .then(data => {
+        newCard.addItem(createNewCard(data));
+        popupNewCard.closePopup();
+      })
+      .catch(err => console.log(err))
   }
 });
 
