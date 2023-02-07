@@ -88,9 +88,12 @@ const popupEdit = new PopupWithForm({
 const popupEditAvatar = new PopupWithForm({
   popupSelector: popupAvatar,
   handleSubmitForm: (inputValues) => {
-    userInfo.setAvatar(inputValues);
-    api.patchAvatar(inputValues);
-    popupEditAvatar.closePopup();
+    api.patchAvatar(inputValues)
+      .then(data => {
+        userInfo.setAvatar(data);
+        popupEditAvatar.closePopup();
+      })
+      .catch(err => console.log(err));
   }
 })
 
