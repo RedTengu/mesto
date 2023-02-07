@@ -1,5 +1,3 @@
-// Добавить catch
-
 export default class Api {
   constructor({ url, headers}) {
     this._url = url;
@@ -23,10 +21,7 @@ export default class Api {
   patchProfileInfo({ name, about }) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
-      headers: {
-        authorization: '8cad75dc-294a-45e1-b4c2-e3d2ab3b0f9d',
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name,
         about
@@ -38,10 +33,7 @@ export default class Api {
   patchAvatar({ avatar }) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
-      headers: {
-        authorization: '8cad75dc-294a-45e1-b4c2-e3d2ab3b0f9d',
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify({
         avatar
       })
@@ -57,10 +49,7 @@ export default class Api {
   postNewCard({ name, link }) {
     return fetch(`${this._url}/cards`, {
       method: 'POST',
-      headers: {
-        authorization: '8cad75dc-294a-45e1-b4c2-e3d2ab3b0f9d',
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name,
         link
@@ -72,10 +61,7 @@ export default class Api {
   deleteThisCard(idCard) {
     return fetch(`${this._url}/cards/${idCard}`, {
       method: 'DELETE',
-      headers: {
-        authorization: '8cad75dc-294a-45e1-b4c2-e3d2ab3b0f9d',
-        'Content-Type': 'application/json'
-      }
+      headers: this._headers
     })
     .then(res => this._isResponse(res))
   }
@@ -83,10 +69,7 @@ export default class Api {
   putLike(idCard) {
     return fetch(`${this._url}/cards/${idCard}/likes`, {
       method: 'PUT',
-      headers: {
-        authorization: '8cad75dc-294a-45e1-b4c2-e3d2ab3b0f9d',
-        'Content-Type': 'application/json'
-      }
+      headers: this._headers
     })
     .then(res => this._isResponse(res))
   }
@@ -94,10 +77,7 @@ export default class Api {
   deleteLike(idCard) {
     return fetch(`${this._url}/cards/${idCard}/likes`, {
       method: 'DELETE',
-      headers: {
-        authorization: '8cad75dc-294a-45e1-b4c2-e3d2ab3b0f9d',
-        'Content-Type': 'application/json'
-      }
+      headers: this._headers
     })
     .then(res => this._isResponse(res))
   }

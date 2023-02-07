@@ -110,7 +110,8 @@ const popupEditAvatar = new PopupWithForm({
         userInfo.setAvatar(data);
         popupEditAvatar.closePopup();
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err))
+      .finally(() => popupEditAvatar.isLoaded(false));
   }
 })
 
