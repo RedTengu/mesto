@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(cardParameter, templateSelector, handleCardClick, like, dislike, myId) {
+  constructor(cardParameter, templateSelector, handleCardClick, like, dislike, handleDeleteCard, myId) {
     // Прием объекта параметров карточек
     this._name = cardParameter.name;
     this._link = cardParameter.link;
@@ -20,6 +20,8 @@ export default class Card {
     // Функции лайка
     this._like = like;
     this._dislike = dislike;
+    // Функция удаления
+    this._handleDeleteCard = handleDeleteCard;
     // Мой ID
     this._myId = myId;
   }
@@ -45,10 +47,17 @@ export default class Card {
     this._likeCount.textContent = data.likes.length;
   }
 
-  // Удаление карточки
-  _handleDeleteClick() {
+  // Удаление карточки из DOM
+  handleDeleteCardDom() {
     this._element.remove();
     this._element = null;
+  }
+
+  _hideDeleteBtn() {
+    if (this._ownerId !== this._myId) {
+      this._deleteBtn.remove();
+      this._deleteBtn = null;
+    }
   }
 
   // Проверка активного лайка
@@ -66,7 +75,10 @@ export default class Card {
         : this._like(this)
     });
 
-    this._deleteBtn.addEventListener('click', () => this._handleDeleteClick());
+    this._deleteBtn
+      ? this._deleteBtn.addEventListener("click", () => this._handleDeleteCard(this))
+      : null;
+
 
     this._cardImg.addEventListener('click', () => this._handleCardClick(this._name, this._link));
   }
@@ -78,9 +90,11 @@ export default class Card {
     this._cardImg.alt = this._cardTitle.textContent;
     this._likeCount.textContent = this._likes.length;
 
+    this._setEventListeners();
+
     this._likeCheck();
 
-    this._setEventListeners();
+    this._hideDeleteBtn();
 
     return this._element;
   }

@@ -1,6 +1,7 @@
 import Popup from '../scripts/components/Popup.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
+import PopupWithConfirmation from '../scripts/components/PopupWithConfirmation.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import validationConfig from '../scripts/utils/validationConfig.js';
 import FormValidator from '../scripts/components/FormValidator.js';
@@ -12,6 +13,7 @@ import {galleryCards,
   popupProfile,
   popupAddCard,
   popupGallery,
+  popupDelete,
   btnEdit,
   btnAdd,
   btnEditAvatar,
@@ -42,6 +44,17 @@ const cardPopup = new Popup(popupAddCard);
 
 // Попап картинки
 const imagePopup = new PopupWithImage(popupGallery)
+
+// Попап подтверждения удаления
+const deleteConfirmPopup = new PopupWithConfirmation({
+  popupSelector: popupDelete,
+  handleSubmitForm: deleteCard
+});
+
+function handleDeleteCard(idCard, card) {
+  deleteConfirmPopup.getCardData(idCard, card);
+  deleteConfirmPopup.openPopup();
+}
 
 // Информация о пользователе
 const userInfo = new UserInfo({name: nameProfile, about: jobProfile, avatar: avatarProfile})
@@ -123,11 +136,21 @@ function dislike(card) {
 
 // Создание экземпляра карточки
 const createNewCard = (cardParameter) => {
-  const card = new Card(cardParameter, '.card-template', handleCardClick, like, dislike, myId);
+  const card = new Card(cardParameter, '.card-template', handleCardClick, like, dislike, handleDeleteCard, myId);
 
   const cardElement = card.generateCard();
 
   return cardElement;
+}
+
+// Удаление карточки
+function deleteCard(card) {
+  api.deleteThisCard(card.idCard)
+    .then(() => {
+      card.handleDeleteCardDom();
+      deleteConfirmPopup.closePopup();
+    })
+    .catch(err => console.log(err));
 }
 
 // Ф-ция открывающая попап картинки
@@ -138,7 +161,6 @@ function handleCardClick(name, link) {
 // Инициализация начальных карточек
 api.getCardsData()
   .then(res => {
-    console.log(res); // не забыть убрать
     newCard.renderItems(res)
   })
   .catch(err => console.log(err))
@@ -171,6 +193,7 @@ cardPopup.setEventListeners();
 popupNewCard.setEventListeners();
 popupEditAvatar.setEventListeners();
 popupEdit.setEventListeners();
+deleteConfirmPopup.setEventListeners();
 imagePopup.setEventListeners();
 
 // Открыть popup редактирования профиля

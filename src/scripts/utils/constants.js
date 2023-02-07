@@ -5,6 +5,7 @@ const popupGallery = document.querySelector('.popup_gallery');
 const popupProfile = document.querySelector('.popup_profile');
 const popupAddCard = document.querySelector('.popup_card-add');
 const popupAvatar = document.querySelector('.popup_avatar');
+const popupDelete = document.querySelector('.popup_confirm');
 // Кнопки popup
 const btnEdit = document.querySelector('.profile__edit-btn');
 const btnAdd = document.querySelector('.profile__add-btn');
@@ -29,6 +30,7 @@ export {galleryCards,
         popupGallery,
         popupProfile,
         popupAddCard,
+        popupDelete,
         btnEdit,
         btnAdd,
         btnEditAvatar,
