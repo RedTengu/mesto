@@ -70,7 +70,7 @@ export default class Api {
   }
 
   deleteCard(id) {
-    return fetch(`${this._url}/cards/${id}`, {
+    return fetch(`${this._url}/cards/${idCard}`, {
       method: 'DELETE',
       headers: {
         authorization: '8cad75dc-294a-45e1-b4c2-e3d2ab3b0f9d',
@@ -80,4 +80,25 @@ export default class Api {
     .then(res => this._isResponse(res))
   }
 
+  putLike(idCard) {
+    return fetch(`${this._url}/cards/${idCard}/likes`, {
+      method: 'PUT',
+      headers: {
+        authorization: '8cad75dc-294a-45e1-b4c2-e3d2ab3b0f9d',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => this._isResponse(res))
+  }
+
+  deleteLike(idCard) {
+    return fetch(`${this._url}/cards/${idCard}/likes`, {
+      method: 'DELETE',
+      headers: {
+        authorization: '8cad75dc-294a-45e1-b4c2-e3d2ab3b0f9d',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => this._isResponse(res))
+  }
 }

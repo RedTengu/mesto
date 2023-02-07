@@ -23,7 +23,8 @@ import {galleryCards,
   nameProfile,
   jobProfile,
   avatarProfile,
-  popupAvatar } from '../scripts/utils/constants.js';
+  popupAvatar,
+  myId } from '../scripts/utils/constants.js';
   import './index.css';
 
 
@@ -93,11 +94,29 @@ const popupEditAvatar = new PopupWithForm({
   }
 })
 
+// Функция лайка
+function like(card) {
+  api.putLike(card.idCard)
+    .then(data => {
+      card.handleLikeClick();
+      card.likeCounter(data);
+    })
+    .catch(err => console.log(err));
+}
+
+// Функция дизлайка
+function dislike(card) {
+  api.deleteLike(card.idCard)
+    .then(data => {
+      card.handleLikeClick();
+      card.likeCounter(data);
+    })
+    .catch(err => console.log(err));
+}
+
 // Создание экземпляра карточки
 const createNewCard = (cardParameter) => {
-  const card = new Card(cardParameter, '.card-template', handleCardClick);
-
-  card.likeCounter();
+  const card = new Card(cardParameter, '.card-template', handleCardClick, like, dislike, myId);
 
   const cardElement = card.generateCard();
 

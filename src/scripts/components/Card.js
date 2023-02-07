@@ -1,9 +1,9 @@
 export default class Card {
-  constructor(cardParameter, templateSelector, handleCardClick) {
+  constructor(cardParameter, templateSelector, handleCardClick, like, dislike, myId) {
     // Прием объекта параметров карточек
     this._name = cardParameter.name;
     this._link = cardParameter.link;
-    this._idCard = cardParameter._id;
+    this.idCard = cardParameter._id;
     this._ownerId = cardParameter.owner._id;
     this._likes = cardParameter.likes;
     // Прием шаблона карточек
@@ -17,6 +17,11 @@ export default class Card {
     this._cardImg = this._element.querySelector('.card__img');
     // Функция открывающая попап картинки
     this._handleCardClick = handleCardClick;
+    // Функции лайка
+    this._like = like;
+    this._dislike = dislike;
+    // Мой ID
+    this._myId = myId;
   }
 
   // Получение шаблона из полученного параметра
@@ -30,13 +35,14 @@ export default class Card {
     return cardTemplate;
   }
 
-  // Поставить или убрать лайк
-  _handleLikeClick() {
+  // Поставить или убрать активный лайк
+  handleLikeClick() {
     this._likeBtn.classList.toggle('card__like-btn_active');
   }
 
-  likeCounter() {
-    this._likeCount.textContent = this._likes.length;
+  // Обновить счетчик лайков
+  likeCounter(data) {
+    this._likeCount.textContent = data.likes.length;
   }
 
   // Удаление карточки
@@ -45,9 +51,20 @@ export default class Card {
     this._element = null;
   }
 
+  // Проверка активного лайка
+  _likeCheck() {
+    this._likes.some(like => like._id === this._myId)
+      ? this._likeBtn.classList.add("card__like-btn_active")
+      : null;
+  }
+
   // Добавить слушатели для лайка, удаления и popup
   _setEventListeners() {
-    this._likeBtn.addEventListener('click', () => this._handleLikeClick());
+    this._likeBtn.addEventListener('click', () => {
+      this._likeBtn.classList.contains('card__like-btn_active')
+        ? this._dislike(this)
+        : this._like(this)
+    });
 
     this._deleteBtn.addEventListener('click', () => this._handleDeleteClick());
 
@@ -59,6 +76,9 @@ export default class Card {
     this._cardTitle.textContent = this._name;
     this._cardImg.src = this._link;
     this._cardImg.alt = this._cardTitle.textContent;
+    this._likeCount.textContent = this._likes.length;
+
+    this._likeCheck();
 
     this._setEventListeners();
 
