@@ -78,9 +78,13 @@ avatarFormValidation.enableValidation();
 const popupEdit = new PopupWithForm({
   popupSelector: popupProfile,
   handleSubmitForm: (inputValues) => {
-    userInfo.setUserInfo(inputValues);
-    api.patchProfileInfo(inputValues);
-    popupEdit.closePopup();
+    api.patchProfileInfo(inputValues)
+      .then(data => {
+        userInfo.setUserInfo(data);
+        popupEdit.closePopup();
+      })
+      .catch(err => console.log(err))
+      .finally(() => popupEdit.isLoaded(false))
   }
 })
 
@@ -134,7 +138,7 @@ function handleCardClick(name, link) {
 // Инициализация начальных карточек
 api.getCardsData()
   .then(res => {
-    console.log(res);
+    console.log(res); // не забыть убрать
     newCard.renderItems(res)
   })
   .catch(err => console.log(err))
@@ -156,6 +160,7 @@ const popupNewCard = new PopupWithForm({
         popupNewCard.closePopup();
       })
       .catch(err => console.log(err))
+      .finally(() => popupNewCard.isLoaded(false))
   }
 });
 
