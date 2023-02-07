@@ -49,7 +49,7 @@ export default class Api {
     .then(res => this._isResponse(res))
   }
 
-  getInitialCards() {
+  getCardsData() {
     return fetch(`${this._url}/cards`, { headers: this._headers })
       .then(res => this._isResponse(res))
   }
@@ -65,6 +65,17 @@ export default class Api {
         name,
         link
       })
+    })
+    .then(res => this._isResponse(res))
+  }
+
+  deleteCard(id) {
+    return fetch(`${this._url}/cards/${id}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: '8cad75dc-294a-45e1-b4c2-e3d2ab3b0f9d',
+        'Content-Type': 'application/json'
+      }
     })
     .then(res => this._isResponse(res))
   }

@@ -51,6 +51,7 @@ api.getProfileInfo()
     userInfo.setAvatar(res);
     userInfo.setUserInfo(res);
   })
+  .catch(err => console.log(err))
 
 // Добавление value в popup профиля
 const addValueProfile = () => {
@@ -96,6 +97,8 @@ const popupEditAvatar = new PopupWithForm({
 const createNewCard = (cardParameter) => {
   const card = new Card(cardParameter, '.card-template', handleCardClick);
 
+  card.likeCounter();
+
   const cardElement = card.generateCard();
 
   return cardElement;
@@ -107,8 +110,12 @@ function handleCardClick(name, link) {
 }
 
 // Инициализация начальных карточек
-api.getInitialCards()
-  .then(res => newCard.renderItems(res))
+api.getCardsData()
+  .then(res => {
+    console.log(res);
+    newCard.renderItems(res)
+  })
+  .catch(err => console.log(err))
 
 const newCard = new Section({
   renderer: (cardParameter) => {

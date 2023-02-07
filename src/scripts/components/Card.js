@@ -3,6 +3,9 @@ export default class Card {
     // Прием объекта параметров карточек
     this._name = cardParameter.name;
     this._link = cardParameter.link;
+    this._idCard = cardParameter._id;
+    this._ownerId = cardParameter.owner._id;
+    this._likes = cardParameter.likes;
     // Прием шаблона карточек
     this._templateSelector = templateSelector;
     // Получение элементов шаблона
@@ -32,14 +35,8 @@ export default class Card {
     this._likeBtn.classList.toggle('card__like-btn_active');
   }
 
-  isLiked() {
-    if (this._likeBtn.classList.contains('card__like-btn_active')) {
-      return true;
-    }
-  }
-
-  likeCounter(data) {
-    this._likeCount.textContent = data.likes.length;
+  likeCounter() {
+    this._likeCount.textContent = this._likes.length;
   }
 
   // Удаление карточки
