@@ -47,12 +47,12 @@ const imagePopup = new PopupWithImage(popupGallery)
 
 // Попап подтверждения удаления
 const deleteConfirmPopup = new PopupWithConfirmation({
-  popupSelector: popupDelete,
+  popup: popupDelete,
   handleSubmitForm: deleteCard
 });
 
 function handleDeleteCard(idCard, card) {
-  deleteConfirmPopup.getCardData(idCard, card);
+  deleteConfirmPopup.setCardData(idCard, card);
   deleteConfirmPopup.openPopup();
 }
 
@@ -89,7 +89,7 @@ avatarFormValidation.enableValidation();
 
 // Редактирование профиля
 const popupEdit = new PopupWithForm({
-  popupSelector: popupProfile,
+  popup: popupProfile,
   handleSubmitForm: (inputValues) => {
     api.patchProfileInfo(inputValues)
       .then(data => {
@@ -103,7 +103,7 @@ const popupEdit = new PopupWithForm({
 
 // Редактирование аватара
 const popupEditAvatar = new PopupWithForm({
-  popupSelector: popupAvatar,
+  popup: popupAvatar,
   handleSubmitForm: (inputValues) => {
     api.patchAvatar(inputValues)
       .then(data => {
@@ -175,7 +175,7 @@ const newCard = new Section({
 
 // Создание карточки через попап
 const popupNewCard = new PopupWithForm({
-  popupSelector: popupAddCard,
+  popup: popupAddCard,
   handleSubmitForm: (inputValues) => {
     api.postNewCard(inputValues)
       .then(data => {
