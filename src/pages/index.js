@@ -1,4 +1,3 @@
-import Popup from '../scripts/components/Popup.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import PopupWithConfirmation from '../scripts/components/PopupWithConfirmation.js';
@@ -29,7 +28,6 @@ import {galleryCards,
   myId } from '../scripts/utils/constants.js';
   import './index.css';
 
-
 // Инициализация Api
 const api = new Api(apiConfig);
 
@@ -49,14 +47,6 @@ function handleDeleteCard(idCard, card) {
 
 // Информация о пользователе
 const userInfo = new UserInfo({name: nameProfile, about: jobProfile, avatar: avatarProfile})
-
-// Получаем инфо профиля с сервера
-api.getProfileInfo()
-  .then(res => {
-    userInfo.setAvatar(res);
-    userInfo.setUserInfo(res);
-  })
-  .catch(err => console.log(err))
 
 // Добавление value в popup профиля
 const addValueProfile = () => {
@@ -150,13 +140,6 @@ function handleCardClick(name, link) {
   imagePopup.openPopup(name, link);
 }
 
-// Инициализация начальных карточек
-api.getCardsData()
-  .then(res => {
-    newCard.renderItems(res)
-  })
-  .catch(err => console.log(err))
-
 const newCard = new Section({
   renderer: (cardParameter) => {
     newCard.addInitialItems(createNewCard(cardParameter));
@@ -177,6 +160,15 @@ const popupNewCard = new PopupWithForm({
       .finally(() => popupNewCard.isLoaded(false))
   }
 });
+
+// Получаем инфо профиля и начальные карточки с сервера
+Promise.all([api.getProfileInfo(), api.getCardsData()])
+  .then(([user, cards]) => {
+    userInfo.setAvatar(user);
+    userInfo.setUserInfo(user);
+    newCard.renderItems(cards);
+  })
+  .catch(err => console.log(err));
 
 // Обработчики
 popupNewCard.setEventListeners();
