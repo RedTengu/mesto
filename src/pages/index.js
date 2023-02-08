@@ -33,15 +33,6 @@ import {galleryCards,
 // Инициализация Api
 const api = new Api(apiConfig);
 
-// Попап профиля
-const profilePopup = new Popup(popupProfile);
-
-// Попап аватара
-const avatarPopup = new Popup(popupAvatar);
-
-// Попап добавления карты
-const cardPopup = new Popup(popupAddCard);
-
 // Попап картинки
 const imagePopup = new PopupWithImage(popupGallery)
 
@@ -188,9 +179,6 @@ const popupNewCard = new PopupWithForm({
 });
 
 // Обработчики
-profilePopup.setEventListeners();
-avatarPopup.setEventListeners();
-cardPopup.setEventListeners();
 popupNewCard.setEventListeners();
 popupEditAvatar.setEventListeners();
 popupEdit.setEventListeners();
@@ -201,17 +189,17 @@ imagePopup.setEventListeners();
 btnEdit.addEventListener('click', () => {
   addValueProfile();
   editFormValidation.validationFormsCheck();
-  profilePopup.openPopup();
+  popupEdit.openPopup();
 });
 
 // Открыть popup редактирования аватара
 btnEditAvatar.addEventListener('click', () => {
   avatarFormValidation.validationFormsCheck();
-  avatarPopup.openPopup();
+  popupEditAvatar.openPopup();
 })
 
 // Открыть popup добавления карточки
 btnAdd.addEventListener('click', () => {
   addFormValidation.validationFormsCheck();
-  cardPopup.openPopup();
+  popupNewCard.openPopup();
 });
