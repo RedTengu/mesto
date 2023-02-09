@@ -24,8 +24,7 @@ import {galleryCards,
   nameProfile,
   jobProfile,
   avatarProfile,
-  popupAvatar,
-  myId } from '../scripts/utils/constants.js';
+  popupAvatar } from '../scripts/utils/constants.js';
   import './index.css';
 
 // Инициализация Api
@@ -117,7 +116,7 @@ function dislike(card) {
 }
 
 // Создание экземпляра карточки
-const createNewCard = (cardParameter) => {
+const createNewCard = (cardParameter, myId) => {
   const card = new Card(cardParameter, '.card-template', handleCardClick, like, dislike, handleDeleteCard, myId);
 
   const cardElement = card.generateCard();
@@ -141,8 +140,8 @@ function handleCardClick(name, link) {
 }
 
 const newCard = new Section({
-  renderer: (cardParameter) => {
-    newCard.addInitialItems(createNewCard(cardParameter));
+  renderer: (cardParameter, myId) => {
+    newCard.addInitialItems(createNewCard(cardParameter, myId));
   }},
   galleryCards
 );
@@ -166,7 +165,7 @@ Promise.all([api.getProfileInfo(), api.getCardsData()])
   .then(([user, cards]) => {
     userInfo.setAvatar(user);
     userInfo.setUserInfo(user);
-    newCard.renderItems(cards);
+    newCard.renderItems(cards, user._id);
   })
   .catch(err => console.log(err));
 

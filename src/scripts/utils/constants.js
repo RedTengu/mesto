@@ -23,8 +23,6 @@ const avatarSrcInput = formEditAvatar.querySelector('.popup__text-input_avatar_s
 const nameProfile = document.querySelector('.profile__nickname');
 const jobProfile = document.querySelector('.profile__bio');
 const avatarProfile = document.querySelector('.profile__avatar');
-// Мой ID
-const myId = 'aa987f88a1121c65fec9b7b3';
 
 export {galleryCards,
         popupGallery,
@@ -45,5 +43,4 @@ export {galleryCards,
         nameProfile,
         jobProfile,
         avatarProfile,
-        popupAvatar,
-        myId}
+        popupAvatar }
