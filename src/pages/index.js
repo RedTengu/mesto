@@ -152,7 +152,6 @@ const popupNewCard = new PopupWithForm({
   handleSubmitForm: (inputValues) => {
     api.postNewCard(inputValues)
       .then(data => {
-        console.log(data)
         newCard.addItem(createNewCard(data, data.owner._id));
         popupNewCard.closePopup();
       })
