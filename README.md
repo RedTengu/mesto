@@ -1,12 +1,18 @@
 # Веб-приложение "Mesto"
 
+## Демо
+
+👉 [Click here!](https://redtengu.github.io/mesto/) 👈
+
 ## Описание
 
 **Mesto** - веб-приложение, где пользователи могут создавать фотокарточки и делиться ими.
 
 Эта версия приложения написана на нативном JS.
 
-Ссылка на версию React.js: [Click here!](https://github.com/RedTengu/react-mesto-api-full-gha)
+Ссылка на версию React.js: [Click here!](https://github.com/RedTengu/react-mesto-auth)
+
+Ссылка на версию React.js c бэкендом Express.js: [Click here!](https://github.com/RedTengu/react-mesto-api-full-gha)
 
 ### Функциональность пользователя:
 - Менять данные своего профиля и аватарку.
@@ -54,7 +60,3 @@ npm run build
 ````
 npm run dev
 ````
-
-## Демо
-
-👉 [Click here!](https://redtengu.github.io/mesto/) 👈
